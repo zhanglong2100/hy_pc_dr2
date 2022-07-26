@@ -1,0 +1,49 @@
+
+:host .tree-container {
+    margin-top: 5px;
+    padding: 0 25px;
+    overflow: auto;
+}
+
+:host .tree-node {
+    cursor: pointer;
+    margin-left: 4px;
+    display: inline-block;
+    margin: 0 -1000px;
+    padding: 5px 1000px;
+}
+
+:host .tree-node:hover {
+    background-color: #79c0ff;
+}
+
+:host .tree-node.active {
+    background: #1890ff;
+    color: #fff;
+}
+
+:host .tree-node span.hover-icon {
+    display: none;
+}
+
+:host .tree-node:hover span.hover-icon {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 0 3px;
+}
+
+:host .tree-node > .title-name {
+    margin-left: 8px;
+    vertical-align: top;
+    padding: 5px 2px;
+}
+
+:host .tree-node > .title-code {
+    margin-left: 5px;
+    background-color: #79c0ff;
+    padding: 5px;
+}
+
+:host ::ng-deep .ant-row.ng-star-inserted {
+    padding-left: 3%;
+}

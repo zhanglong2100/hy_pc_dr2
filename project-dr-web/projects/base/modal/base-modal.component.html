@@ -1,0 +1,21 @@
+<!--<div style="position: absolute; right: 1px; top: -36px;  ">-->
+<!--<button nz-button [nzType]="'primary'" (click)="showModal()"><i class="anticon anticon-scan"></i></button>-->
+<!--</div>-->
+
+
+<div #outerContent>
+    <ng-content select="div.content" #content></ng-content>
+</div>
+<nz-modal [(nzVisible)]="isVisible"
+          nzTitle=""
+          [nzFooter]="null"
+          nzWidth="100%"
+          nzWrapClassName="abc"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzBodyStyle]="{padding: 0}"
+          [nzStyle]="{padding:'30px',top: 0,height: '100%',overflow: 'hidden'}">
+    <div #modalContent>
+    </div>
+</nz-modal>
+

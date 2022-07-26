@@ -1,0 +1,25 @@
+<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-control>
+            <nz-input-group nzPrefixIcon="anticon anticon-lock">
+                <input type="password" nz-input
+                       formControlName="password"
+                       [(ngModel)]="user.password"
+                       placeholder="请输入管理员密码">
+            </nz-input-group>
+            <nz-form-explain
+                *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">
+                请输入管理员密码！
+            </nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+    <span *ngIf="errorMessage" class="errorMessage">{{errorMessage}}</span>
+    <nz-form-item class="last-item">
+        <nz-form-control>
+            <button nz-button
+                    class="login-form-button"
+                    [nzType]="'primary'" (click)="doLogin()">创建管理员
+            </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

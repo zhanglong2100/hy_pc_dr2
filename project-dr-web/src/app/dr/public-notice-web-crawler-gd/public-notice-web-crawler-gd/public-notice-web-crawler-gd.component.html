@@ -1,0 +1,126 @@
+<!--<nz-card style="width: 3000px;overflow-x: scroll;">-->
+<nz-card >
+    <div class="mb-md" style="width: 100%;">
+
+        <nz-input-group nzAddOnBefore="发布网站：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.publicWeb" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="公告标题：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.projectName" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="项目编号：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.projectCode" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="所属地区：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.area" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="公告类型：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.publicNoticeType" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="采购公告" nzLabel="采购公告"></nz-option>
+                <nz-option nzValue="采购计划" nzLabel="采购计划"></nz-option>
+                <nz-option nzValue="采购需求" nzLabel="采购需求"></nz-option>
+                <nz-option nzValue="采购意向" nzLabel="采购意向"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="采购方式：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.purchaseType" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="公开招标" nzLabel="公开招标"></nz-option>
+                <nz-option nzValue="邀请招标" nzLabel="邀请招标"></nz-option>
+                <nz-option nzValue="竞争性谈判" nzLabel="竞争性谈判"></nz-option>
+                <nz-option nzValue="询价" nzLabel="询价"></nz-option>
+                <nz-option nzValue="单一来源" nzLabel="单一来源"></nz-option>
+                <nz-option nzValue="竞争性磋商" nzLabel="竞争性磋商"></nz-option>
+                <nz-option nzValue="其他" nzLabel="其他"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="采购分类：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.purchaseClassify" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="货物" nzLabel="货物"></nz-option>
+                <nz-option nzValue="工程" nzLabel="工程"></nz-option>
+                <nz-option nzValue="服务" nzLabel="服务"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+
+        <nz-input-group nzAddOnBefore="是否解析：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.ifAnalysis" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="1" nzLabel="是"></nz-option>
+                <nz-option nzValue="0" nzLabel="否"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+
+
+
+       <nz-input-group nzAddOnBefore="发布时间：">
+            <nz-range-picker [(ngModel)]="dateRange"
+                             [nzFormat]="dateFormat"
+                             (ngModelChange)="dateRangeOnChange($event)"
+            ></nz-range-picker>
+
+        </nz-input-group>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+
+        <button nz-button nzType="primary" id="searchBtn" (click)="doSearch()"><i nz-icon nzType="search"></i>搜索
+        </button>
+        <button nz-button nzType="primary" id="redoBtn" (click)="reset()"><i nz-icon nzType="redo"></i>重置
+        </button>
+
+    </div>
+
+    <base-grid
+        [name]="'广东省政府采购网公告资源'"
+        [keyField]="'id'"
+        [usePage]="true"
+        [showSort]="false"
+        [showRefresh]="true"
+        [columns]="columns"
+        [searchForm]="searchForm"
+        [showOperateDelete]="false"
+        [showOperateModify]="false"
+        [showType] = "'table'"
+        [showAdd]="false"
+        [showModify]="false"
+        [customButtons]="tpl"
+        [customOperateButtons]="customOperateButtons"
+
+
+    >
+    </base-grid>
+
+    <ng-template #tpl>
+        <ng-container >
+        <button nz-button (click)="stop(); "><i nz-icon nzType="export" theme="outline"></i>暂停自动抓取任务
+        </button>
+    </ng-container>
+
+        <ng-container >
+            <button nz-button (click)="start(); "><i nz-icon nzType="export" theme="outline"></i>启动自动抓取任务
+            </button>
+        </ng-container>
+
+
+    </ng-template>
+
+
+
+</nz-card>

@@ -1,0 +1,9 @@
+config:
+  logback:
+    outLevel: DEBUG
+    fileLevel: DEBUG
+  noVerifyCode: false
+  swagger: false
+  db:
+    create-table: true
+

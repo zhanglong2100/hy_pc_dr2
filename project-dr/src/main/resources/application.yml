@@ -1,0 +1,136 @@
+config:
+  ai:
+    clientId: LXrztEOzQxfef66DLIDQYpIG
+    clientSecret: gbDodnochc8jYjlAHADDgyyas9mrlmkF
+    httpUrl: https://aip.baidubce.com/rest/2.0/ocr/v1/numbers
+  initial:
+    password: 12345678
+  noVerifyCode: false
+  swagger: false
+  druid:
+    login-password: admin
+    login-username: admin
+  db:
+    type: mysql
+    create-table: true
+  cache:
+    warning-record-size: 100
+    data-record-size: 500
+    error-record-size: 10
+  mvc:
+    view-handlers:
+      - /; redirect:/web/index.html
+      - /web; redirect:/web/index.html
+      - /web/; redirect:/web/index.html
+      - /api;  redirect:/swagger-ui.html
+    resource-handlers:
+      - /web/**; classpath:/META-INF/resources/webjars/project-dr-web/
+  shiro:
+    paths:
+      - /; anon
+      - /druid/**; anon
+      - /swagger-ui.html**; anon
+      - /webjars/**; anon
+      - /web/**; anon
+      - /api; anon
+      - /dataReceive/publicNotice/export; anon
+      - /syq/**; crossFilter,anon
+      - /ws/**; crossFilter,anon
+      - /swagger-resources/**; anon
+      - /v2/api-docs; anon
+      - /sso/createAdmin; crossFilter,anon
+      - /sso/needVerifyCode; crossFilter,anon
+      - /sso/getVerifyCodeImage; crossFilter,anon
+      - /sso/*; crossFilter,ajaxJsonFilter
+#      - /dataReceive/drTerminalDir/getJsTree; crossFilter,anon
+#      - /dataReceive/drGateway/getDtuFrontByNo; crossFilter,anon
+#      - /dataReceive/drGateway/getAllMqttClientFront; crossFilter,anon
+#      - /dataReceive/drTerminalRecord/*; crossFilter,anon
+#      - /dataReceive/drTerminalDir/list; crossFilter,anon
+#      - /dataReceive/drProtocolProperties/list; crossFilter,anon
+#      - /dataReceive/drTerminal/getTerminals; crossFilter,anon
+#      - /dataReceive/recordEvent/getEvent; crossFilter,anon
+#      - /dataReceive/recordEvent/getEventDataById; crossFilter,anon
+#      - /dataReceive/drTerminalRecord/getLatestByTimeType; crossFilter,anon
+#      - /dataReceive/drTerminalDir/getNzTree; crossFilter,anon
+#      - /dr/online/** ; crossFilter,anon
+#      - /dataReceive/agencySupermarket/commit; crossFilter;anon
+      - /**; appUser,crossFilter,ajaxJsonFilter,user,requestPrint
+  logback:
+    outLevel: DEBUG
+    fileLevel: WARN
+spring:
+  servlet:
+    multipart:
+      max-request-size: 300MB
+      max-file-size: 300MB
+  jackson:
+    time-zone: GMT+8
+  main:
+    banner-mode: "off"
+  application:
+    name: dr
+  datasource:
+    name: dr
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/gc_dr?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: gc
+    password: gc
+#  datasource:
+#    name: dr
+#    url: jdbc:h2:file:./db/sjtb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: 123
+    druid:
+      # 初始化连接大小
+      initial-size: 8
+      # 最小空闲连接数
+      min-idle: 5
+      #最大连接数
+      max-active: 64
+      #查询超时时间
+      query-timeout: 6000
+      #事务查询超时时间
+      transaction-query-timeout: 6000
+      #关闭空闲连接超时时间
+      remove-abandoned-timeout: 1800
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      ##配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      ##配置一个连接在池中最小生存的时间，单位是毫秒
+      min-victable-idle-time-millis: 300000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: true
+      pool-prepared-statements: true
+      max-open-prepared-statements: 300
+      verify-server-certificate: false
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      use-global-dataSource-stat: true
+  profiles:
+    active: "@spring.profiles.active@"
+server:
+  port: 7082
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: utf-8
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.sbwork.**.entity
+logging:
+  level:
+    root: info
+    "com.sbwork": debug
+    "com.sbwork.cache.aspect.CacheAspectUtil": INFO
+    "com.sbwork.base.persistence.BaseMapperProvider": INFO
+    "com.sbwork.dr.deal.apsect.RecordCacheAspectUtil": INFO
+

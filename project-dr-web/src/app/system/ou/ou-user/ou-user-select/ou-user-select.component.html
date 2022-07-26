@@ -1,0 +1,18 @@
+<nz-select
+    nzShowSearch
+    nzServerSearch
+    nzAllowClear
+    [nzPlaceHolder]="emptyText"
+    [(ngModel)]="selectedValue"
+    [nzShowArrow]="false"
+    [nzDisabled]="disabled"
+    [nzMode]="multiple?'multiple':'default'"
+    (nzOnSearch)="onSearch($event)"
+>
+    <ng-container *ngIf="!isLoading">
+        <nz-option *ngFor="let p of propertyValues" [nzLabel]="p.name" [nzValue]="p.code"></nz-option>
+    </ng-container>
+    <nz-option *ngIf="isLoading" nzDisabled nzCustomContent>
+        <i nz-icon nzType="loading" class="loading-icon"></i> 正在加载中...
+    </nz-option>
+</nz-select>

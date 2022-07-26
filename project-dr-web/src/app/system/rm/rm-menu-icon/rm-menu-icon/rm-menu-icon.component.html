@@ -1,0 +1,38 @@
+<nz-card>
+    <div class="inner-panel">
+        <base-grid
+            #baseGrid
+            [nameField]="'name'"
+            [showType]="'list'"
+            [keyField]="'iconId'"
+            [searchForm]="searchForm"
+            [showRefresh]="false"
+            [columns]="columns"
+            [schema]="schema"
+            [popupWidth]="500"
+            [customListItem]="customListItem"
+            [customButtons]="customButtons"
+        >
+        </base-grid>
+        <ng-template #customListItem let-item>
+            <img class="img" src="{{item.picture}}" alt="样式图片">
+            <div class="i-text">{{item.name}}</div>
+        </ng-template>
+        <ng-template #customButtons>
+            <nz-input-group nzSearch [nzSuffix]="suffixIconButton"
+                            style="width: 200px ;float: right;margin-right: 1.5%">
+                <input type="text" nz-input placeholder="请输入图标名称" [(ngModel)]="searchForm.name"
+                       (ngModelChange)="baseGrid.reload()"/>
+            </nz-input-group>
+            <ng-template #suffixIconButton>
+                <i nz-icon nzType="search" (click)="baseGrid.reload()"></i>
+            </ng-template>
+        </ng-template>
+    </div>
+</nz-card>
+
+
+
+
+
+

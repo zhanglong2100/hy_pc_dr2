@@ -1,0 +1,10 @@
+/**/target/**
+/.idea/**
+/**/*.iml
+/project-dr-web/target/**
+/project-dr-web/node_modules/
+/project-dr-web/package-lock.json
+/project-dr-web/node/
+/project-dr-web/dist/
+/cache/
+/db/

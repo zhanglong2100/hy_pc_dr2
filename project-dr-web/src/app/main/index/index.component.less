@@ -1,0 +1,97 @@
+@import "../../../variables.less";
+
+:host {
+    text-align: left;
+    height: calc(100% - 64px);
+}
+
+:host ::ng-deep .ant-layout-header,
+:host ::ng-deep .ant-layout-footer {
+    background: linear-gradient(90deg, @sb-primary-color, @sb-color-5);
+    color: #93ff83;
+    padding: 0 !important;
+}
+
+//
+//:host ::ng-deep .ant-layout-sider {
+//    color: #fff;
+//    /*line-height: 120px;*/
+//    max-width: 230px !important;
+//    width: 230px !important;
+//    flex: 0 0 230px !important;
+//}
+//
+//:host ::ng-deep .ant-layout-content {
+//    min-height: 100% !important;
+//}
+
+/*:host > ::ng-deep .ant-layout {*/
+/*margin-bottom: 48px;*/
+/*}*/
+
+/*:host ::ng-deep .ant-layout:last-child {*/
+/*margin: 0;*/
+/*height:100%;*/
+/*}*/
+:host .logo {
+    display: inline-block;
+    height: 58px;
+    line-height: 58px;
+    //background-color: @sb-primary-color;
+}
+
+.logo img {
+    margin: -37px 10px 0;
+    max-width: 50px;
+}
+
+.logo div {
+    display: inline-block;
+    font-size: 24px;
+    color: #fff;
+    /*margin-left: 10px;*/
+}
+
+.logo .title {
+    position: relative;
+    top: 3px;
+    //margin-right: 25px;
+    vertical-align: text-bottom;
+}
+
+.logo .title.lb {
+    margin: 0 2px;
+}
+
+.logo .title.sub-title {
+    margin-right: 25px;
+    font-size: 20px;
+    top: 5px;
+}
+
+.signOut {
+    padding: 1px 11px;
+    cursor: pointer;
+    font-size: 16px !important;
+    height: 64px;
+    line-height: 64px;
+    margin-top: -1px;
+}
+
+.signIn {
+    margin-top: 16px;
+}
+
+.signOut:hover {
+    background-color: @sb-color-8;
+}
+
+.user i {
+    font-size: 17px !important;
+    padding: 0 5px;
+}
+
+.user {
+    margin-top: 3px;
+    font-size: 15px !important;
+}

@@ -1,0 +1,24 @@
+<base-modal (handleCancelAfter)="modalCancel()" #baseModal1>
+    <div [style.display]="showMapLocate ? 'block' : 'none'" #content class="content">
+        <div class="operation-tool">
+            <div class="search-container">
+                <nz-input-group [nzSuffix]="suffixIcon">
+                    <input type="text"
+                           nz-input
+                           (ngModelChange)="searchAddress($event)"
+                           [(ngModel)]="searchValue"
+                           placeholder="请输入关键词"/>
+                </nz-input-group>
+                <ng-template #suffixIcon>
+                    <i nz-icon nzType="search"></i>
+                </ng-template>
+            </div>
+            <div class="address">当前地址：<span class="val">{{address}}</span></div>
+            <div class="coord">当前坐标：<span class="val">{{overlay1?.point.lng}},{{overlay1?.point.lat}}</span></div>
+            <div>
+                <button (click)="setLocationValue()" nz-button [nzType]="'primary'" [disabled]="! overlay1">确定</button>
+            </div>
+        </div>
+        <div class="locate1" id="mapContainer1" style=" height: 500px;"></div>
+    </div>
+</base-modal>

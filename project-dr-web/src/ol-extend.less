@@ -1,0 +1,38 @@
+@import url('variables.less');
+
+/*   放大缩小按钮   */
+.ol-viewport .ol-zoom {
+    position: absolute;
+    right: 20px;
+    bottom: 80px;
+    top: inherit;
+    left: inherit;
+    background-color: @sb-color-4;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ol-viewport .ol-zoom .ol-zoom-in {
+    border-radius: 0;
+    /*background: #02A48B url(img/mapzoomin.png) center center no-repeat;*/
+    cursor: pointer;
+}
+
+.ol-viewport .ol-zoom .ol-zoom-out {
+    border-radius: 0;
+    /*background: #02A48B url(img/mapzoomout.png) center center no-repeat;*/
+    cursor: pointer;
+}
+
+.ol-viewport .ol-zoom > button {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    margin: -1px 0 0 0;
+}
+
+.ol-viewport .ol-zoom > button:hover, .ol-viewport .ol-zoom > button:focus {
+    background-color: @sb-color-8;
+    border: 1px solid #033129 !important;
+}

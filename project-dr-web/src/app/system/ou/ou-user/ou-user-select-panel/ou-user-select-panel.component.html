@@ -1,0 +1,36 @@
+<div class="terminal-root">
+    <div class="terminal-search">
+        <nz-input-group [nzSuffix]="suffixIcon" class="terminal-root-input-group">
+            <input type="text" nz-input (ngModelChange)="searchTree($event)"
+                   [(ngModel)]="searchValue"/>
+        </nz-input-group>
+        <ng-template #suffixIcon>
+            <i nz-icon nzType="search"></i>
+        </ng-template>
+    </div>
+    <div class="terminal-tree">
+        <nz-tree [nzData]="nodes"
+                 #nzTree
+                 (nzClick)="activeNode($event)"
+                 nzBlockNode
+                 nzAsyncData
+                 (nzExpandChange)="openEvent($event)"
+                 [nzExpandedKeys]="nzExpandedKeys"
+                 [nzTreeTemplate]="nzTreeTemplate">
+            <ng-template #nzTreeTemplate let-node>
+                <span class="custom-node"
+                      [class.active]="activedNode?.key === node.key"
+                >
+
+                     <span *ngIf="node.origin.type === 'directory' || node.origin.type === 'integration_directory'">
+                          <i nz-icon nzType="dr:hy-module" theme="fill" class="hy-icon"></i>
+                     </span>
+                     <span *ngIf="node.origin.type === 'integration'">
+                          <i nz-icon nzType="dr:user_yw" theme="fill" class="hy-icon"></i>
+                     </span>
+                    <span class="folder-name">{{ node.title }}</span>
+                </span>
+            </ng-template>
+        </nz-tree>
+    </div>
+</div>

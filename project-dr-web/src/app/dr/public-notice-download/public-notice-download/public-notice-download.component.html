@@ -1,0 +1,99 @@
+<!--<nz-card style="width: 3000px;overflow-x: scroll;">-->
+<nz-card >
+    <div class="mb-md" style="width: 100%;">
+        <nz-input-group nzAddOnBefore="名称：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.name" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <nz-input-group nzAddOnBefore="创建时间：">
+            <nz-range-picker [(ngModel)]="dateRange2"
+                             [nzFormat]="dateFormat"
+                             (ngModelChange)="dateRangeOnChange2($event)"
+            ></nz-range-picker>
+        </nz-input-group>
+
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <button nz-button nzType="primary" id="searchBtn" (click)="doSearch()"><i nz-icon nzType="search"></i>搜索
+        </button>
+        <button nz-button nzType="primary" id="redoBtn" (click)="reset()"><i nz-icon nzType="redo"></i>重置
+        </button>
+
+
+    </div>
+
+    <base-grid
+        [name]="'公告下载'"
+        [keyField]="'id'"
+        [usePage]="true"
+        [showSort]="false"
+        [showRefresh]="false"
+        [columns]="columns"
+        [searchForm]="searchForm"
+        [showOperateDelete]="false"
+        [showOperateModify]="false"
+        [showAdd]="false"
+        [showModify]="false"
+        [customButtons]="upload"
+
+
+    >
+    </base-grid>
+
+
+
+    <ng-template #upload>
+<!--        <ng-container >
+            <button nz-button (click)="upload(); "><i nz-icon nzType="export" theme="outline"></i>上传文件
+            </button>
+        </ng-container>-->
+
+        <ng-container >
+            <button nz-button (click)="download(); "><i nz-icon nzType="export" theme="outline"></i>下载文件
+            </button>
+        </ng-container>
+
+        <ng-container >
+            <nz-upload
+                style="margin-left: 10px;margin-right: 10px;"
+                [nzShowUploadList]="true"
+                [nzAction]="uploadUrl"
+                [nzFileList]="nzFileList"
+                (nzChange)="handleChange"
+                [nzCustomRequest]="customRequst.bind(this)"
+                [nzBeforeUpload]="before.bind(this)"
+                [nzMultiple]="true"
+            >
+                <button nz-button><i nz-icon nzType="upload"></i>上传文件</button>
+            </nz-upload>
+        </ng-container>
+
+<!--        <ng-container >
+            <button nz-button (click)="addBidTime(); "><i nz-icon nzType="export" theme="outline"></i>添加开标时间
+            </button>
+        </ng-container>-->
+
+    </ng-template>
+
+    <ng-template #addBidTime>
+<!--        <public-notice-detail
+
+                              [usePopup]="true"
+                              [title]="'添加开标时间'"
+                              [detailPanelType]="detailPanelType"
+                              (eventClose)="eventClose($event)"></public-notice-detail>-->
+
+    </ng-template>
+
+<!--    <ng-template #download>
+        <ng-container >
+            <button nz-button (click)="download(); "><i nz-icon nzType="download" theme="outline"></i>下载文件
+            </button>
+        </ng-container>
+    </ng-template>-->
+
+</nz-card>

@@ -1,0 +1,15 @@
+<sf-item-wrap [id]="id"
+              [schema]="schema"
+              [ui]="ui"
+              [showError]="showError"
+              [error]="error"
+              [showTitle]="schema.title">
+    <!-- 开始自定义控件区域 -->
+
+    <sys-code-category-select
+        [valueChange]="ui.valueChange"
+        [(ngModel)]="selectedValue"
+        (ngModelChange)="setValue($event)"
+    ></sys-code-category-select>
+    <!-- 结束自定义控件区域 -->
+</sf-item-wrap>

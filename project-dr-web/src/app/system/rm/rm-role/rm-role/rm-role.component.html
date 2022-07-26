@@ -1,0 +1,26 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="14">
+            <div class="inner-panel">
+                <base-grid
+                    [name]="'角色'"
+                    [keyField]="'roleId'"
+                    [usePage]="true"
+                    [showSort]="false"
+                    [columns]="columns"
+                    [schema]="schema"
+                    (itemClick)="itemClick($event)"
+                    [clickRowWhileSetRowClass]="true"
+                    [beforeDataRender]="beforeDataRender.bind(this)"
+                    [popupWidth]="'450'"
+                ></base-grid>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="10">
+            <div class="inner-panel" style="border: none;">
+                <rm-role-function [roleId]="selectRoleId"></rm-role-function>
+            </div>
+        </div>
+    </nz-card>
+</div>
+

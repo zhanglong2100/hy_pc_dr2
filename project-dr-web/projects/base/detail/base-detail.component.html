@@ -1,0 +1,33 @@
+<base-popup
+    *ngIf="usePopup"
+    [width]="width"
+    [height]="height"
+    (closeClick)="closeClick(false)" [title]="detailPanelTitle">
+
+    <!--自定义内容-->
+    <div class="content">
+        <sf #sf
+            [schema]="schema"
+            [formData]="record"
+            [mode]="'edit'"
+            [button]="'none'"
+            (formChange)="formChange($event)"
+        >
+        </sf>
+    </div>
+    <div *ngIf="showButton" class="rightBtn">
+        <button (click)="submit()" nz-button [nzType]="'primary'" [disabled]="! sf.valid">保存</button>
+        <button (click)="sf.reset()" nz-button [nzType]="'default'">重置</button>
+    </div>
+</base-popup>
+
+<div [style.width]="width" class="sf-content" *ngIf="!usePopup">
+    <sf #sfNoPopup
+        [schema]="schema"
+        [formData]="record"
+        [mode]="'edit'"
+        [button]="showButton? detailButton: 'none'"
+        (formSubmit)="submit()"
+        (formChange)="formChange($event)"
+    ></sf>
+</div>

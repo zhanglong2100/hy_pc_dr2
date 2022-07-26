@@ -1,0 +1,93 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="10">
+            <div class="inner-panel">
+                <div style="padding: 10px 10px 0 10px" class="abc">
+                    <button *ngIf="showAddModule" nz-button (click)="addModule()">
+                        <i nz-icon nzType="plus"
+                           theme="outline"></i>新增目录
+                    </button>
+                    <button *ngIf="showAddCode" nz-button
+                            (click)="addCode()">
+                        <i
+                            nz-icon [nzType]="'plus'"
+                            theme="outline"></i>新增字典
+                    </button>
+                    <button *ngIf="showRefresh" nz-button (click)="reload(); ">
+                        <i nz-icon nzType="reload"
+                           theme="outline"></i>刷新
+                    </button>
+                </div>
+                <div class="category-tree-container">
+                    <base-tree
+                        #baseTree
+                        [showSearch]="false"
+                        [globalName]="'字典模块'"
+                        (selectNode)="selectNode($event)"
+                        [beforeDrop]="beforeDrop.bind(this)"
+                        [treeNodeTemplate]="treeNodeTemplate"
+                        [showRoot]="true"
+                    ></base-tree>
+                </div>
+                <ng-template #treeNodeTemplate let-node>
+                    <div class="tree-node"
+                         style="display: inline-block;"
+                         [class.active]="activatedCategory?.id === node.key"
+                         [attr.draggable]="baseTree.draggable && !node.isDisabled ? true : null"
+                         [attr.aria-grabbed]="baseTree.draggable && !node.isDisabled ? true : null"
+                         [class.draggable]="baseTree.draggable && !node.isDisabled ? true : null"
+                    >
+                <span *ngIf="node.origin.type === 'root'">
+                   <i nz-icon nzType="dr:hy-root" theme="fill"></i>
+                </span>
+                        <span *ngIf="node.origin.type === 'module'">
+                   <i nz-icon nzType="dr:hy-module" theme="fill"></i>
+                </span>
+                        <span *ngIf="node.origin.type === 'leaf'">
+                   <i nz-icon nzType="dr:hy-terminal" theme="fill"></i>
+                </span>
+                        <span class="title-name">{{ node.title }}
+                            <span class="title-code"
+                                  *ngIf="node.origin.data.type==='leaf'">{{'【' + node.origin.data.code + '】'}}</span>
+                        </span>
+
+                        <span (click)="modifyClick($event, node.origin)" class="hover-icon">
+                   <i nz-icon nzType="edit" theme="fill" title="修改"
+                   ></i>
+                </span>
+                        <span nz-popconfirm
+                              [title]="'删除'"
+                              class="hover-icon"
+                              nzTitle="是否删除?"
+                              nzOkText="确认"
+                              nzCancelText="取消"
+                              (nzOnConfirm)="deleteClick(node.origin)"><i nz-icon nzType="delete"
+                                                                          theme="outline"></i>
+                </span>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="14">
+            <div class="inner-panel">
+                <sys-code [selectedModule]="activatedCategory"></sys-code>
+            </div>
+        </div>
+    </nz-card>
+</div>
+<!--[commitWrapper]="commitWrapper"-->
+<!--[recordWrapper]="recordWrapper"-->
+<ng-container *ngIf="_showDetailPanel">
+    <base-detail
+        [baseParam]="baseParam"
+        [schema]="schema"
+        [name]="'字典模块'"
+        [usePopup]="true"
+        [detailPanelType]="detailPanelType"
+        [record]="detailRecord"
+        [width]="650"
+        [height]="400"
+        (eventClose)="detailClose($event)"
+    >
+    </base-detail>
+</ng-container>

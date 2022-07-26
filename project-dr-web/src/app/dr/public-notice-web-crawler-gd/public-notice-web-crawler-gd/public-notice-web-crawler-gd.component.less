@@ -1,0 +1,29 @@
+@import "../../../../variables.less";
+
+:host .mb-md {
+    padding-left: 10px;
+    line-height: 3em;
+    margin: 10px 0 !important;
+}
+
+:host .mb-md > button {
+    vertical-align: top;
+}
+
+@media only screen and (min-width: 1024px) {
+    :host .mb-md > nz-input-group {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    :host .mb-md > nz-input-group {
+        width: 33.3%;
+    }
+}
+
+
+.ant-card.ant-card-bordered {
+    height: auto;
+    margin: 0;
+}

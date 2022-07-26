@@ -1,0 +1,14 @@
+<sf-item-wrap [id]="id"
+              [schema]="schema"
+              [ui]="ui"
+              [showError]="showError"
+              [error]="error"
+              [showTitle]="schema.title">
+    <!-- 开始自定义控件区域 -->
+
+    <base-icon-upload
+        [(ngModel)]="iconBase64Value"
+        (ngModelChange)="setValue($event)"
+    >
+    </base-icon-upload>
+</sf-item-wrap>

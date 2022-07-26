@@ -1,0 +1,87 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./variables.less";
+
+i[theme="fill"] {
+    font-size: 18px;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    -webkit-border-radius: 3px
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px
+}
+
+::-webkit-scrollbar-thumb {
+    height: 30px;
+    background-color: @sb-color-3;
+    -webkit-border-radius: 7px;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 2px solid #fff
+}
+
+::-webkit-scrollbar-thumb:hover {
+    height: 30px;
+    background-color: #9f9f9f;
+    -webkit-border-radius: 8px
+}
+
+.color-red {
+    color: red;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ant-input, .ant-select-selection {
+    border-radius: 0;
+}
+
+.ant-card-body {
+    height: 100%;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.ant-layout-content {
+    height: calc(100% - 64px);
+}
+
+.ant-card.ant-card-bordered {
+    height: 100%;
+    margin: 0;
+}
+
+.fullscreen {
+    height: 100%;
+}
+
+.ant-tabs-bar {
+    margin: 0;
+}
+
+.tr-hover-pointer {
+    cursor: pointer;
+}
+
+html {
+    font-size: 15px;
+}
+
+@media screen and (min-width: 1440px) {
+    html {
+        font-size: 18px;
+    }
+}

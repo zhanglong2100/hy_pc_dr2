@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" x="0px"
+     y="0px"
+     viewBox="0 0 36 32" style="enable-background:new 0 0 36 32;" xml:space="preserve">
+<style type="text/css">
+	.st0 {
+        fill: #1496E6;
+    }
+
+    .st1 {
+        fill: none;
+        stroke: #FFFFFF;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+    }
+
+    .st2 {
+        fill: #8FCCF2;
+    }
+
+    .st3 {
+        fill: none;
+        stroke: #E6F7FF;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-miterlimit: 10;
+    }
+</style>
+    <polygon class="st0" points="36,32 0,0 36,0 "/>
+    <polyline class="st1" points="19.9,9 24,12.9 31,5.9 "/>
+</svg>

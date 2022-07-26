@@ -1,0 +1,18 @@
+<sf-item-wrap [id]="id"
+              [schema]="schema"
+              [ui]="ui"
+              [showError]="showError"
+              [error]="error"
+              [showTitle]="schema.title">
+    <!-- 开始自定义控件区域 -->
+
+    <ou-position-select
+        [emptyText]="ui.emptyText"
+        [valueType]="ui.valueType"
+        [multiple]="ui.multiple"
+        [searchForm]="ui.searchForm"
+        [(ngModel)]="selectedValue"
+        (ngModelChange)="setValue($event)"
+    ></ou-position-select>
+    <!-- 结束自定义控件区域 -->
+</sf-item-wrap>

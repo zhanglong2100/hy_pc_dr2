@@ -1,0 +1,47 @@
+@import "../../../../../variables.less";
+
+:host ::ng-deep .popup-body {
+    overflow: hidden !important;
+}
+
+.preview {
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+    text-align: center;
+    border: 1px solid @sb-primary-color;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-radius: 4px;
+    color: @sb-primary-color;
+    background-color: #fff;
+}
+
+.searchInput {
+    border: 1px solid #d9d9d9;
+    margin-bottom: 5px;
+}
+
+.list-ul > li {
+    margin: 12.5px;
+}
+
+.list-ul > li.active {
+    background: rgb(228, 244, 250);
+}
+
+.list-ul > li:hover {
+    background: rgb(228, 244, 250);
+}
+
+.img {
+    margin-top: 17px;
+    margin-bottom: 8px;
+    max-width: 22px;
+    width: 22px;
+    height: 22px
+}
+
+

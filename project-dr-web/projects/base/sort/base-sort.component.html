@@ -1,0 +1,17 @@
+<base-popup width="700px" (closeClick)="cancel()" title="通知排序">
+
+    <!--自定义内容-->
+    <div class="content">
+        <ul class="sort-container" [sortablejs]="data" [sortablejsOptions]="options">
+            <li *ngFor="let one of data; let i = index"><span
+                class="index-sorted">{{ (i + 1) }}</span><span>{{ one[showField] }}</span></li>
+        </ul>
+    </div>
+
+    <!--右下角的按钮-->
+    <div class="rightBtn">
+        <button (click)="submit()" nz-button [nzType]="'primary'">保存</button>
+        <button (click)="cancel()" nz-button [nzType]="'default'">取消</button>
+    </div>
+
+</base-popup>

@@ -1,0 +1,31 @@
+<nz-tree-select
+    #nzTree
+    style="width: 50%; max-width: 200px;"
+    [(ngModel)]="value"
+    [nzNodes]="categoryValues"
+    nzShowSearch
+    nzAllowClear
+    [disabled]="disabled"
+    nzPlaceHolder="==请选择字典分类=="
+    (nzExpandChange)="onExpandChange($event)"
+    [nzDropdownStyle]="nzDropdownStyle"
+    [nzShowIcon]="true">
+    <ng-template #nzTreeTemplate let-node>
+        <div class="ant-tree-node-content-wrapper" [class.ant-tree-node-selected]="node.isSelected">
+            <div class="sys-code-category-tree-node"
+                 style="display: inline-block;">
+                <span *ngIf="node.origin.type === 'root'">
+                   <i nz-icon nzType="dr:hy-root" theme="fill"></i>
+                </span>
+                <span *ngIf="node.origin.type === 'module'">
+                   <i nz-icon nzType="dr:hy-module" theme="fill"></i>
+                </span>
+                <span *ngIf="node.origin.type === 'leaf'">
+                   <i nz-icon nzType="dr:hy-terminal" theme="fill"></i>
+                </span>
+                <span class="title-name">{{ node.title }}</span>
+                <span class="title-code" *ngIf="node.origin.type==='leaf'">{{ node.origin.data.code }}</span>
+            </div>
+        </div>
+    </ng-template>
+</nz-tree-select>

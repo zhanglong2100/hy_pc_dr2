@@ -1,0 +1,15 @@
+<base-tree
+    #baseTree
+    [showSearch]="false"
+    [checkable]="checkable"
+    [checkedWhileClick]="checkedWhileClick"
+    (selectNode)="selectNode($event)"
+    (expandChange)="expandChange($event)"
+    [globalName]="'功能列表'"
+    [draggable]="false"
+    [customLoadMethod]="customLoadMethod.bind(this)"
+    [typeIcon]="typeIcon"
+    [showTypeIcon]="true"
+    [showRoot]="true"
+></base-tree>
+

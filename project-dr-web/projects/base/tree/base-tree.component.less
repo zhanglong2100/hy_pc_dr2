@@ -1,0 +1,81 @@
+@import "../../../src/variables.less";
+
+:host .base-tree-container {
+    padding: 10px;
+    height: 100%;
+}
+
+:host ::ng-deep .ant-tree {
+    overflow: hidden;
+}
+
+:host ::ng-deep .ant-tree li {
+    padding: 0;
+}
+
+:host ::ng-deep .ant-tree li span.ant-tree-switcher {
+    padding: 3px 0;
+    box-sizing: content-box;
+}
+
+:host .ant-tree-switcher-line-icon {
+    font-size: 10px;
+    vertical-align: middle;
+    margin-bottom: 5px;
+}
+
+:host .ant-tree-switcher-line-icon.active {
+    color: @sb-color-6;
+}
+
+:host ::ng-deep .tree-container {
+    //height: calc(100% - 42px);
+    //margin-top: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+:host .search {
+    margin-bottom: 10px;
+}
+
+:host ::ng-deep .tree-node {
+    cursor: pointer;
+    margin-left: 4px;
+    display: inline-block;
+    margin: 0 -1000px;
+    padding: 5px 1000px;
+}
+
+:host ::ng-deep .tree-node:hover {
+    background: @sb-color-1;
+}
+
+:host ::ng-deep .tree-node.disabled {
+    color: rgba(0, 0, 0, .25) !important;
+    cursor: not-allowed;
+}
+
+:host ::ng-deep .tree-node.active {
+    background-color: @sb-color-3;
+}
+
+:host .tree-node > .title-name {
+    margin-left: 8px;
+    vertical-align: top;
+    padding: 5px 2px;
+}
+
+:host .hy-icon.tree-info {
+    margin-left: 40px;
+    display: none;
+}
+
+:host .nzList-container {
+    height: 100%;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    overflow: auto;
+}
+
+

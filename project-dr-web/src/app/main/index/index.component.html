@@ -1,0 +1,34 @@
+<nz-layout>
+    <nz-header #indexHeader>
+        <div class="logo" #logo>
+            <img src="{{imgUrl}}"/>
+            <div class="title">
+                {{ titleService.title }}
+            </div>
+            <ng-container *ngIf="titleService.subTitle">
+                <div class="title lb">-</div>
+                <div class="title sub-title">{{titleService.subTitle}}</div>
+            </ng-container>
+
+            <!-- <div style="margin-left: 1rem" class="title">
+                 {{ titleService.title1 }}
+             </div>-->
+            <!--            <div style="float: right;">-->
+            <!--登录-->
+            <!--<button class="signIn"-->
+            <!--nz-button-->
+            <!--nzType="default"-->
+            <!--[routerLink]="['/',{ outlets: { popup: ['popupLogin']}}]"-->
+            <!--&gt;登录-->
+            <!--</button>-->
+            <!--<div class="user"><i class="anticon anticon-user"></i><span>系统管理员</span></div>-->
+            <!--<div class="signOut" (click)="signOut()"><i nz-icon nzType="dr:setting_yw" theme="outline"></i></div>-->
+            <!--            </div>-->
+        </div>
+        <sb-first-level-menu (topMenuChange)="topMenuChange($event)" [maxWidth]="remainWidth"
+                             style="float: right;height: 64px;"></sb-first-level-menu>
+    </nz-header>
+    <nz-content>
+        <sb-menu [menu]="menu" [height]="contentHeight"></sb-menu>
+    </nz-content>
+</nz-layout>

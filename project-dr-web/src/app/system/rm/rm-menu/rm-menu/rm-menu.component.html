@@ -1,0 +1,68 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="6">
+            <div class="inner-panel">
+                <base-tree
+                    #baseTree
+                    [showSearch]="true"
+                    [globalName]="'菜单列表'"
+                    (selectNode)="selectNode($event)"
+                    [draggable]="true"
+                    [beforeDrop]="beforeDrop.bind(this)"
+                    [typeIcon]="typeIcon"
+                    [showTypeIcon]="true"
+                    [showRoot]="true"
+                    [treeNodeTemplate]="treeNodeTemplate">
+                    <ng-template #treeNodeTemplate let-node>
+                        <div class="tree-node" style="display: inline-block;"
+                             [class.active]="baseTree.activatedNode?.key === node.key">
+                                <span>
+                                    <img *ngIf="node.origin.data.iconId" class="menu-node-img"
+                                         [src]="node.origin.data.iconData">
+                                   <i *ngIf="! node.origin.data.iconId" nz-icon
+                                      [nzType]="node.origin.type === 'APPLICATION' ? 'dr:hy-application' : node.origin.type === 'MODULE' ? 'dr:hy-module' : 'dr:hy-menu'"
+                                      theme="fill"></i>
+                                </span>
+                            <span class="title-name">{{ node.title }}</span>
+                        </div>
+                    </ng-template>
+                </base-tree>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="18">
+            <div class="inner-panel">
+                <base-grid
+                    [name]="'菜单管理'"
+                    [keyField]="'id'"
+                    [nameField]="'name'"
+                    [usePage]="false"
+                    [showSort]="true"
+                    [schema]="schema"
+                    [columns]="columns"
+                    [searchForm]="searchForm"
+                    [showType]="'list'"
+                    [usePopup]="false"
+                    [popupWidth]="'650px'"
+                    (customDetailClick)="customDetailClick($event)"
+                    [recordWrapper]="recordWrapper.bind(this)"
+                    (dataReload)="onDataReload()"
+                    [showTableListChange]="true"
+                    [beforeRemove]="beforeRemove.bind(this)"
+                    [customListItem]="customListItem">
+                    <ng-template #customListItem let-item>
+                            <span>
+                                <img *ngIf="item.iconId" class="menu-img" [src]="item.iconData">
+                                <i
+                                    *ngIf="! item.iconId"
+                                    nz-icon
+                                    [nzType]="item.type === 'APPLICATION' ? 'dr:hy-application' : item.type === 'MODULE' ? 'dr:hy-module' : 'dr:hy-menu'"
+                                    theme="fill">
+                                </i>
+                            </span>
+                        <div class="i-text">{{item.name}}</div>
+                    </ng-template>
+                </base-grid>
+            </div>
+        </div>
+    </nz-card>
+</div>

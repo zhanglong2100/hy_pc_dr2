@@ -1,0 +1,48 @@
+<nz-layout>
+    <nz-sider *ngIf="showSecond" [nzWidth]="230" [nzTheme]="'light'"
+        style="overflow-y: auto;box-shadow: darkgrey 0 1px 4px 2px;" [style.height]="height">
+        <!--菜单列表-->
+        <ul nz-menu [nzMode]="'inline'" >
+            <ng-container *ngFor="let m of menu" >
+                <li class="ant-menu-item" *ngIf="m.data.openType === 'OPEN'" (click)="openMenu(m)">
+                    <img class="menu-icon" *ngIf="m.icon" [src]="m.icon">
+                    {{m.name}}
+                </li>
+                <li routerLinkActive="ant-menu-item-selected" *ngIf="m.data.type === 'MENU' && m.data.openType !== 'OPEN'"
+                    nz-menu-item [routerLink]="[m.routerLink]">
+                    <img class="menu-icon" *ngIf="m.icon" [src]="m.icon">
+                    {{m.name}}
+                </li>
+                <li *ngIf="m.data.type === 'MODULE'" nz-submenu nzOpen="{{ activeRouter.indexOf(m.routerLink) >= 0 }}">
+                    <span title>
+                        <img class="menu-icon" *ngIf="m.icon" [src]="m.icon">
+                        {{m.name}}
+                    </span>
+                    <ul *ngFor="let c of m.children">
+                        <li nz-menu-item [routerLink]="[c.routerLink]" nzSelected="{{ c.routerLink === activeRouter }}">
+                            <img class="menu-icon" *ngIf="c.icon" [src]="c.icon">
+                            {{c.name}}
+                        </li>
+                    </ul>
+                </li>
+            </ng-container>
+        </ul>
+    </nz-sider>
+    <nz-content>
+        <!--面包屑-->
+        <!--<div *ngIf="showBreadcrumb">-->
+        <!--<sb-breadcrumb></sb-breadcrumb>-->
+        <!--</div>-->
+        <div #ccc style="position: relative;">
+            <!--<base-modal>-->
+            <div class="content" style="padding: 10px;" [style.height]="height">
+                <router-outlet></router-outlet>
+            </div>
+            <!--</base-modal>-->
+        </div>
+    </nz-content>
+</nz-layout>
+
+
+
+

@@ -1,0 +1,67 @@
+<!--<div nz-row>
+    <div nz-col nzSpan="8" style="padding: 10px" [nzXl]="8">
+        <nz-card>
+            <nz-list nzBordered nzSize="small">
+                <nz-header><i style="margin: 0 10px;" nz-icon nzType="setting" theme="fill"></i> 角色</nz-header>
+                <nz-list-item (click)="clickItem($event,item)" [class.active]="selectRoleId == item.roleId"
+                              *ngFor="let item of roles"><i style="margin-right: 10px" nz-icon nzType="setting"
+                                                            theme="fill"></i>{{item.roleName}}
+                </nz-list-item>
+            </nz-list>
+        </nz-card>
+    </div>
+    <div nz-col nzSpan="16" style="padding: 10px" [nzXl]="16">-->
+<nz-card>
+    <div style="padding: 10px 10px 0 10px;" class="abc">
+        <button nz-button
+                (click)="commitFunc()">
+            <i
+                nz-icon [nzType]="'setting'"
+                theme="outline"></i>设置
+        </button>
+        <button nz-button
+                (click)="refresh()">
+            <i
+                nz-icon [nzType]="'interaction'"
+                theme="outline"></i>刷新
+        </button>
+        <button nz-button
+                (click)="collapsed()">
+            <i
+                nz-icon [nzType]="'up-square'"
+                theme="outline"></i>全部折叠
+        </button>
+        <button nz-button
+                (click)="expanded()">
+            <i
+                nz-icon [nzType]="'down-square'"
+                theme="outline"></i>全部展开
+        </button>
+    </div>
+    <div style="height: calc(100% - 42px)">
+        <rm-role-function-tree
+            #roleFunctionTree
+            [roleId]="selectRoleId"
+        ></rm-role-function-tree>
+    </div>
+</nz-card>
+<!--    </div>-->
+
+<base-popup
+    *ngIf="_showDetailPanel"
+    [width]="400"
+    [height]="400"
+    (closeClick)="closeClick()" [title]="'请选择功能项'">
+
+    <!--自定义内容-->
+    <div class="content">
+        <rm-function-tree #rmFunctionTree></rm-function-tree>
+    </div>
+    <div class="rightBtn">
+        <button nz-button nzType="primary" (click)="submit()">保存</button>
+        <button nz-button nzType="default" (click)="closeClick()">取消</button>
+    </div>
+
+</base-popup>
+
+<!--</div>-->

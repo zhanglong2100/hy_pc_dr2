@@ -1,0 +1,82 @@
+<div class="base-tree-container">
+    <div class="search" *ngIf="showSearch">
+        <nz-input-group [nzSuffix]="suffixIcon" class="terminal-root-input-group">
+            <input type="text"
+                   nz-input
+                   (ngModelChange)="searchByText($event)"
+                   [(ngModel)]="searchValue"
+                   placeholder="请输入关键词"/>
+        </nz-input-group>
+        <ng-template #suffixIcon>
+            <i nz-icon nzType="search"></i>
+        </ng-template>
+    </div>
+    <div class="tree-container" [style.height]="treeContainerHeight"
+         [style.display]=" searchContainer ? 'none' : 'block'">
+        <nz-tree [nzData]="treeData"
+                 #nzTree
+                 (nzClick)="clickNode($event)"
+                 [nzDraggable]="draggable"
+                 [nzCheckable]="checkable"
+                 [nzCheckedKeys]="checkedKeys"
+                 nzBlockNode
+                 nzAsyncData
+                 (nzOnDrop)="nzOnDrop($event)"
+                 (nzOnDragOver)="nzOnDragOver($event)"
+                 [nzBeforeDrop]="nzBeforeDrop.bind(this)"
+                 (nzExpandChange)="openEvent($event)"
+                 [nzTreeTemplate]="treeNodeTemplate?treeNodeTemplate:nzTreeTemplate"
+                 [nzExpandedIcon]="expandedIconTpl"
+        >
+        </nz-tree>
+        <ng-template #nzTreeTemplate let-node>
+            <div class="tree-node" style="display: inline-block;"
+                 [class.active]="activatedNode?.key === node.key"
+                 [attr.draggable]="draggable && !node.isDisabled ? true : null"
+                 [attr.aria-grabbed]="draggable && !node.isDisabled ? true : null"
+                 [class.draggable]="draggable && !node.isDisabled ? true : null"
+                 [class.disabled]="node.isDisabled"
+            >
+            <span *ngIf="showTypeIcon">
+               <i nz-icon [nzType]="getTreeNodeTypeIcon(node.origin)" theme="fill"></i>
+            </span>
+                <span class="title-name">{{ node.title }}</span>
+            </div>
+        </ng-template>
+        <ng-template #expandedIconTpl let-node let-origin="origin">
+            <i *ngIf="!node.isLeaf" nz-icon
+               [nzType]="(node.isExpanded && !node.isLeaf) ? 'caret-down' : 'caret-right'"
+               [class.active]="activatedNode?.key === node.key"
+               class="ant-tree-switcher-line-icon"></i>
+            <i *ngIf="node.isLeaf" nz-icon nzType="file" class="ant-tree-switcher-line-icon"></i>
+        </ng-template>
+    </div>
+    <div class="tree-container" [style.height]="treeContainerHeight"
+         [style.display]=" searchContainer ? 'block' : 'none'">
+        <div class="nzList-container">
+            <nz-list [nzDataSource]="listData" [nzRenderItem]="customListItem ? customListItem : defaultListItem"
+                     [nzItemLayout]="'horizontal'">
+                <ng-template #defaultListItem let-item>
+                    <nz-list-item [nzActions]="[opAction]">
+                        <nz-list-item-meta
+                            [nzTitle]="item.title"
+                            [nzAvatar]="nzAvatar"
+                            [nzDescription]="item.type"
+                        >
+                        </nz-list-item-meta>
+                        <ng-template #nzAvatar>
+                            <div style="padding: 10px 0 10px 15px ">
+                                <i nz-icon [nzType]="getTreeNodeTypeIcon(item)" theme="fill"></i>
+                            </div>
+                        </ng-template>
+                        <ng-template #opAction>
+                            <div style="margin-right: 18px">
+                                <a (click)="itemClick(item)">定位</a>
+                            </div>
+                        </ng-template>
+                    </nz-list-item>
+                </ng-template>
+            </nz-list>
+        </div>
+    </div>
+</div>

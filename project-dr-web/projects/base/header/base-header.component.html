@@ -1,0 +1,14 @@
+<div>
+    <div class="header" nz-row>
+        <div nz-col [nzSpan]="12" class="left">
+            <span>
+                <i class="anticon anticon-appstore-o"></i>
+                <ng-content select="span.title-name"></ng-content>
+            </span>
+        </div>
+        <div nz-col [nzSpan]="12" class="right">
+            <ng-content select="div.right"></ng-content>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,37 @@
+<nz-upload
+    [nzCustomRequest]="customUpload.bind(this)"
+    [nzShowUploadList]=false
+    [nzBeforeUpload]="beforeUpload.bind(this)"
+    (nzChange)="handleChange($event)"
+>
+    <div
+        class="uploadDiv"
+        [style.width]="width"
+        [style.height]="height"
+        title="点击上传"
+    >
+        <img *ngIf="value != null" [ngStyle]="{'margin-top':'8px',height:'22px'}" src='{{value}}' alt="样式图片">
+    </div>
+</nz-upload>
+<!--<div>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='20' height='20' viewBox='0 0 20 20'>
+    <defs>
+        <rect id='a' y='54' width='60' height='25' rx='1'/>
+        <mask id='b' x='0' y='0' width='60' height='25' fill='#fff'>
+            <use xlink:href='#a'/>
+        </mask>
+    </defs>
+    <g transform='translate(-9 -56)' fill='none' fill-rule='evenodd'>
+        <use stroke='#EDEEEF' mask='url(#b)' stroke-width='2' xlink:href='#a'/>
+        <path d='M19.05 62.797c-.208-.268-1.776-2.188-3.629-1.725-.662.165-1.439.44-2.009 1.463-2.18 3.913 4.965 8.983 5.615 9.433V72l.023-.016.023.016v-.032c.65-.45 7.795-5.52 5.615-9.433-.57-1.023-1.347-1.298-2.009-1.463-1.853-.463-3.42 1.457-3.629 1.725z' fill='red'/>
+    </g>
+</svg>
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><line x1='0' y1='0' x2='200' y2='200' style='stroke:rgb(255,0,0);stroke-width:2' /></svg>" />
+    <img src='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><path d="M224 387.814V512L32 320l192-192v126.912C447.375 260.152 437.794 103.016 380.93 0 521.287 151.707 491.48 394.785 224 387.814z"/></svg>'  />
+</div>-->
+
+
+
+
+
+

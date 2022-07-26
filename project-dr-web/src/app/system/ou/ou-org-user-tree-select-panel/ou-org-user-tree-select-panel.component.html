@@ -1,0 +1,12 @@
+<base-tree
+    #baseTree
+    [showSearch]="false"
+    [searchConfig]="searchConfig"
+    [maxLevel]="searchConfig.maxLevel"
+    [globalName]="'机构模块'"
+    (selectNode)="onSelectNode($event)"
+    [showTypeIcon]="true"
+    [typeIcon]="typeIcon"
+    [checkable]="checkable"
+    [showRoot]="true"
+></base-tree>

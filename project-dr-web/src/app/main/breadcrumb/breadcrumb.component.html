@@ -1,0 +1,19 @@
+<nz-breadcrumb>
+    <nz-breadcrumb-item>
+        <!--<i nz-icon nzType="dr:user_yw" theme="fill" style="padding: 0 10px 0 5px;font-size: 30px;"></i>-->
+        <nz-avatar nzIcon="user"></nz-avatar>
+        <!--<nz-avatar nzSize="user" nzIcon="user"></nz-avatar>-->
+        <span style="padding: 0 0 0 13px;font-weight: bold;">用户名</span>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+        <!--<i class="anticon anticon-link" style="padding: 0 10px 0 5px;color: #3385FF;font-weight: bold"></i>-->
+        <i nz-icon nzType="dr:home" theme="fill" style="padding: 0 10px 0 5px;"></i>
+        <a routerLink=home>首页</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item *ngFor="let breadcrumb of breadcrumbs">
+        <a [routerLink]="[breadcrumb.url, breadcrumb.params]"
+           [queryParams]="breadcrumb.queryParams"
+           class="fontColor">{{breadcrumb.label}}</a>
+    </nz-breadcrumb-item>
+</nz-breadcrumb>
+

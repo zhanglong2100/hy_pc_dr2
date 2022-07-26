@@ -1,0 +1,60 @@
+<div class="modal">
+    <div class="modalCenter">
+        <div class="popupLogin">
+            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group nzPrefixIcon="anticon anticon-user">
+                            <input type="text" nz-input
+                                   formControlName="userName"
+                                   [(ngModel)]="login.userName"
+                                   placeholder="请输入用户名">
+                        </nz-input-group>
+                        <nz-form-explain
+                            *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">
+                            请输入用户名！
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group nzPrefixIcon="anticon anticon-lock">
+                            <input type="password" nz-input
+                                   formControlName="password"
+                                   [(ngModel)]="login.password"
+                                   placeholder="请输入密码">
+                        </nz-input-group>
+                        <nz-form-explain
+                            *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">
+                            请输入密码！
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item *ngIf="production && mainService.getNeedVerifyCode()" style="position:relative;">
+                    <nz-form-control class="cc">
+                        <input type="text" nz-input formControlName="verifyCode"
+                               [(ngModel)]="login.verifyCode" placeholder="请输入验证码">
+                    </nz-form-control>
+                    <div class="yzm-namer">
+                        <img class="getVerifyCodeImage" [src]="verifyCodeSrc" (click)="refreshVerifyCode()">
+                    </div>
+                </nz-form-item>
+                <span *ngIf="errorMessage" class="errorMessage">{{errorMessage}}</span>
+                <nz-form-item class="last-item">
+                    <nz-form-control>
+                        <label nz-checkbox formControlName="rememberMe"
+                               [ngModel]="login.rememberMe">
+                            <span>记住我</span>
+                        </label>
+                        <a class="login-form-forgot" class="login-form-forgot">忘记密码</a>
+                        <button nz-button
+                                class="login-form-button"
+                                [nzType]="'primary'" (click)="doLogin()">登录
+                        </button>
+                        <a href="">注册</a>
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </div>
+    </div>
+</div>

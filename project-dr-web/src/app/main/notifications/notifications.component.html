@@ -1,0 +1,16 @@
+<ng-template #template let-notification>
+    <div class="ant-notification-notice-content">
+        <div>
+            <div class="ant-notification-notice-message">
+                <ng-content select="div.message"></ng-content>
+            </div>
+            <!--Notification Title-->
+            <ng-content select="div.ant-notification-notice-description"></ng-content>
+            <!--A function will be be called after the notification is closed (automatically after the "duration" time of manually).-->
+            <span class="ant-notification-notice-btn">
+                <ng-content select="button"></ng-content>
+                <!--<button nz-button nzType="primary" nzSize="small" (click)="notification.close()"><span>Confirm</span></button>-->
+            </span>
+        </div>
+    </div>
+</ng-template>

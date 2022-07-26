@@ -1,0 +1,119 @@
+<!--<nz-card style="width: 3000px;overflow-x: scroll;">-->
+<nz-card >
+    <div class="mb-md" style="width: 100%;">
+
+        <nz-input-group nzAddOnBefore="发布网站：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.publicWeb" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="标题：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.title" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="省份：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.province" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="招标方式：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.bidType" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+<!--        <nz-input-group nzAddOnBefore="省份：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.province" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="广东省内" nzLabel="广东省内"></nz-option>
+                <nz-option nzValue="广东省外" nzLabel="广东省外"></nz-option>
+            </nz-select>
+        </nz-input-group>-->
+
+
+        <nz-input-group nzAddOnBefore="是否解析：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.ifAnalysis" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="1" nzLabel="是"></nz-option>
+                <nz-option nzValue="0" nzLabel="否"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+
+
+
+       <nz-input-group nzAddOnBefore="发布时间：">
+            <nz-range-picker [(ngModel)]="dateRange"
+                             [nzFormat]="dateFormat"
+                             (ngModelChange)="dateRangeOnChange($event)"
+            ></nz-range-picker>
+
+        </nz-input-group>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+
+        <button nz-button nzType="primary" id="searchBtn" (click)="doSearch()"><i nz-icon nzType="search"></i>搜索
+        </button>
+        <button nz-button nzType="primary" id="redoBtn" (click)="reset()"><i nz-icon nzType="redo"></i>重置
+        </button>
+
+    </div>
+
+    <base-grid
+        [name]="'公告资源'"
+        [keyField]="'id'"
+        [usePage]="true"
+        [showSort]="false"
+        [showRefresh]="true"
+        [columns]="columns"
+        [searchForm]="searchForm"
+        [showOperateDelete]="false"
+        [showOperateModify]="false"
+        [showType] = "'table'"
+        [showAdd]="false"
+        [showModify]="false"
+        [customButtons]="tpl"
+        [customOperateButtons]="customOperateButtons"
+
+
+    >
+    </base-grid>
+
+    <ng-template #tpl>
+        <ng-container >
+        <button nz-button (click)="stop(); "><i nz-icon nzType="export" theme="outline"></i>暂停自动抓取任务
+        </button>
+    </ng-container>
+
+        <ng-container >
+            <button nz-button (click)="start(); "><i nz-icon nzType="export" theme="outline"></i>启动自动抓取任务
+            </button>
+        </ng-container>
+
+        <ng-container >
+            <button nz-button (click)="stopBidding(); "><i nz-icon nzType="export" theme="outline"></i>暂停中标抓取任务
+            </button>
+        </ng-container>
+
+        <ng-container >
+            <button nz-button (click)="startBidding(); "><i nz-icon nzType="export" theme="outline"></i>启动中标抓取任务
+            </button>
+        </ng-container>
+       <!-- <button nz-button (click)="autoConfig(); "><i nz-icon nzType="export" theme="outline"></i>自动抓取配置
+        </button>
+
+        <public-notice-web-crawler-config *ngIf="showDetailConfig"
+                         [record]="record"
+                         [usePopup]="true"
+                         [title]="'自动抓取配置'"
+                         (eventClose)="eventClose($event)"></public-notice-web-crawler-config>-->
+
+    </ng-template>
+
+
+
+</nz-card>

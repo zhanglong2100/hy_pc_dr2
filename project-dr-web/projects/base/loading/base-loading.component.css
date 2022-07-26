@@ -1,0 +1,11 @@
+:host .loading {
+    height: 300px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 4px;
+    padding: 30px 50px;
+    width: 100%;
+    z-index: 2;
+    display: block;
+    position: absolute;
+}

@@ -1,0 +1,36 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="6">
+            <div class="inner-panel">
+                <ou-org-user-tree-select-panel
+                    [searchConfig]="searchConfig"
+                    (selectNode)="selectNode($event)"
+                    #baseTree>
+                </ou-org-user-tree-select-panel>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="18">
+            <div class="inner-panel">
+                <base-grid
+                    #baseGrid
+                    [name]="'机构管理'"
+                    [keyField]="'orgId'"
+                    [nameField]="'orgName'"
+                    [usePage]="false"
+                    [showSort]="true"
+                    [schema]="schema"
+                    [columns]="columns"
+                    [baseParam]="baseParam"
+                    [showOperateModify]="true"
+                    [showType]="showType"
+                    [popupWidth]="'880'"
+                    [showTableListChange]="true"
+                    (dataReload)="onDataReload()"
+                    [typeIcon]="typeIcon"
+                    [typeFieldName]="'orgType'"
+                    [beforeRemove]="beforeRemove.bind(this)"
+                ></base-grid>
+            </div>
+        </div>
+    </nz-card>
+</div>

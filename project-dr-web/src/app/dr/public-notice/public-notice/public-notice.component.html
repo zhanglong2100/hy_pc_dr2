@@ -1,0 +1,171 @@
+<!--<nz-card style="width: 3000px;overflow-x: scroll;">-->
+<nz-card >
+    <div class="mb-md" style="width: 100%;">
+        <nz-input-group nzAddOnBefore="项目名称：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.projectName" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="发布网站：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.publicWeb" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="得分情况：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.score" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+
+
+        <nz-input-group nzAddOnBefore="公告类型：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.publicNoticeType" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+<!--        <nz-input-group nzAddOnBefore="公告类型：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.publicNoticeType" nzAllowClear>
+                <nz-option nzValue="采购需求" nzLabel="采购需求"></nz-option>
+                <nz-option nzValue="资格预审公告" nzLabel="资格预审公告"></nz-option>
+                <nz-option nzValue="采购公告" nzLabel="采购公告"></nz-option>
+                <nz-option nzValue="中标（成交）结果公告" nzLabel="中标（成交）结果公告"></nz-option>
+                <nz-option nzValue="更正公告" nzLabel="更正公告"></nz-option>
+                <nz-option nzValue="终止公告" nzLabel="终止公告"></nz-option>
+                <nz-option nzValue="合同公告" nzLabel="合同公告"></nz-option>
+                <nz-option nzValue="验收公告" nzLabel="验收公告"></nz-option>
+            </nz-select>
+        </nz-input-group>-->
+
+<!--        <nz-input-group nzAddOnBefore="业务类型：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.businessType" nzAllowClear>
+                <nz-option nzValue="管网业务" nzLabel="管网业务"></nz-option>
+                <nz-option nzValue="测绘业务" nzLabel="测绘业务"></nz-option>
+                <nz-option nzValue="数据业务" nzLabel="数据业务"></nz-option>
+                <nz-option nzValue="信息业务" nzLabel="信息业务"></nz-option>
+                <nz-option nzValue="遥感业务" nzLabel="遥感业务"></nz-option>
+                <nz-option nzValue="规划业务" nzLabel="规划业务"></nz-option>
+            </nz-select>
+        </nz-input-group>-->
+
+        <nz-input-group nzAddOnBefore="业务类型：" style="">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.businessType" nzAllowClear>
+                <nz-option nzValue="大地测量" nzLabel="大地测量"></nz-option>
+                <nz-option nzValue="测绘航空摄影" nzLabel="测绘航空摄影"></nz-option>
+                <nz-option nzValue="摄影测量与遥感" nzLabel="摄影测量与遥感"></nz-option>
+                <nz-option nzValue="地理信息系统工程" nzLabel="地理信息系统工程"></nz-option>
+                <nz-option nzValue="工程测量" nzLabel="工程测量"></nz-option>
+                <nz-option nzValue="不动产测绘" nzLabel="不动产测绘"></nz-option>
+                <nz-option nzValue="海洋测绘" nzLabel="海洋测绘"></nz-option>
+                <nz-option nzValue="地图编制" nzLabel="地图编制"></nz-option>
+                <nz-option nzValue="导航电子地图制作" nzLabel="导航电子地图制作"></nz-option>
+                <nz-option nzValue="互联网地图服务" nzLabel="互联网地图服务"></nz-option>
+                <nz-option nzValue="市政工程" nzLabel="市政工程"></nz-option>
+                <nz-option nzValue="规划" nzLabel="规划"></nz-option>
+                <nz-option nzValue="数据工程" nzLabel="数据工程"></nz-option>
+                <nz-option nzValue="其他" nzLabel="其他"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="采购类型：">
+            <label>
+                <input nz-input [(ngModel)]="searchForm.purchaseType" style="width: 150px;" class="mr-sm">
+            </label>
+        </nz-input-group>
+
+
+
+        <nz-input-group nzAddOnBefore="是否中标：">
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.bidIf" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="1" nzLabel="是"></nz-option>
+                <nz-option nzValue="0" nzLabel="否"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+        <nz-input-group nzAddOnBefore="省份：">
+            <!--<label>
+                <input nz-input [(ngModel)]="searchForm.province" style="width: 150px;" class="mr-sm">
+            </label>-->
+            <nz-select style="width: 150px;" [(ngModel)]="searchForm.province" nzAllowClear>
+                <nz-option nzValue="" nzLabel="全部"></nz-option>
+                <nz-option nzValue="广东省内" nzLabel="广东省内"></nz-option>
+                <nz-option nzValue="广东省外" nzLabel="广东省外"></nz-option>
+            </nz-select>
+        </nz-input-group>
+
+
+       <nz-input-group nzAddOnBefore="发布时间：">
+            <nz-range-picker [(ngModel)]="dateRange"
+                             [nzFormat]="dateFormat"
+                             (ngModelChange)="dateRangeOnChange($event)"
+            ></nz-range-picker>
+
+        </nz-input-group>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <nz-input-group nzAddOnBefore="创建时间：">
+            <nz-range-picker [(ngModel)]="dateRange2"
+                             [nzFormat]="dateFormat"
+                             (ngModelChange)="dateRangeOnChange2($event)"
+            ></nz-range-picker>
+        </nz-input-group>
+
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <button nz-button nzType="primary" id="searchBtn" (click)="doSearch()"><i nz-icon nzType="search"></i>搜索
+        </button>
+        <button nz-button nzType="primary" id="redoBtn" (click)="reset()"><i nz-icon nzType="redo"></i>重置
+        </button>
+
+        <!--<button nz-button (click)="bg.reload()" [nzType]="'primary'">查询</button>-->
+       <!-- <button nz-button (click)="bg.reload()" [nzType]="'primary'">导出</button>-->
+        <!--    <button nz-button (click)="searchForm.dealType = undefined; reload()">重置</button>-->
+    </div>
+
+    <base-grid
+        [name]="'公告'"
+        [keyField]="'id'"
+        [usePage]="true"
+        [showSort]="false"
+        [showRefresh]="true"
+        [columns]="columns"
+        [searchForm]="searchForm"
+        [showOperateDelete]="false"
+        [showOperateModify]="false"
+        [customDetail]="customDetail"
+        [customButtons]="tpl"
+        [showType] = "'table'"
+        [scroll] = "{ x: '3500px' }"
+        (customDetailClick)="customDetailClick($event)"
+
+    >
+    </base-grid>
+    <ng-template #customDetail>
+        <public-notice-detail *ngIf="showDetail"
+                                 [record]="record"
+                                 [usePopup]="true"
+                                 [title]="'新增公告'"
+                                 [detailPanelType]="detailPanelType"
+                                 (eventClose)="eventClose($event)"></public-notice-detail>
+
+     <!-- <public-notice-update-detail *ngIf="showDetailUpdate"
+                              [record]="record"
+                              [usePopup]="true"
+                              [title]="'编辑公告'"
+                              (eventClose)="eventClose($event)"></public-notice-update-detail>-->
+    </ng-template>
+
+
+    <ng-template #tpl>
+        <ng-container >
+            <button nz-button (click)="exports(); "><i nz-icon nzType="export" theme="outline"></i>导出
+            </button>
+        </ng-container>
+
+    </ng-template>
+
+</nz-card>

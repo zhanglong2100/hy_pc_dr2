@@ -1,0 +1,21 @@
+<base-popup *ngIf="usePopup" [width]="width" [height]="height" (closeClick)="closeClick()" title="{{title}}">
+
+    <!--自定义内容-->
+    <div class="content">
+        <sf #sf
+            [schema]="schema"
+            [formData]="formData"
+            [mode]="'edit'"
+            [layout]="layout"
+            [button]="button"
+            (formSubmit)="submit($event)"
+
+        ></sf>
+    </div>
+
+    <!--右下角的按钮-->
+    <div class="rightBtn"></div>
+
+</base-popup>
+
+

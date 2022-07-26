@@ -1,0 +1,46 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="6">
+            <div class="inner-panel">
+                <base-tree
+                    #baseTree
+                    [showSearch]="true"
+                    [maxLevel]="2"
+                    [globalName]="'功能列表'"
+                    (selectNode)="selectNode($event)"
+                    [draggable]="true"
+                    [beforeDrop]="beforeDrop.bind(this)"
+                    [typeIcon]="typeIcon"
+                    [showTypeIcon]="true"
+                    [searchConfig]="searchConfig"
+                    [showRoot]="true"
+                ></base-tree>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="18">
+            <div class="inner-panel">
+                <base-grid
+                    [name]="'功能管理'"
+                    [keyField]="'id'"
+                    [nameField]="'name'"
+                    [usePage]="false"
+                    [showSort]="true"
+                    [schema]="schema"
+                    [columns]="columns"
+                    [showOperateModify]="true"
+                    [searchForm]="searchForm"
+                    [showType]="'list'"
+                    [usePopup]="false"
+                    [popupWidth]="'650px'"
+                    (customDetailClick)="customDetailClick($event)"
+                    [typeIcon]="typeIcon"
+                    [typeFieldName]="'type'"
+                    [recordWrapper]="recordWrapper.bind(this)"
+                    (dataReload)="onDataReload()"
+                    [showTableListChange]="true"
+                    [beforeRemove]="beforeRemove.bind(this)"
+                ></base-grid>
+            </div>
+        </div>
+    </nz-card>
+</div>

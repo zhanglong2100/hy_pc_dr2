@@ -1,0 +1,27 @@
+<div>
+    <div *ngIf="showMask" class="mask" (click)="clickMask()"
+         [style.background-color]="maskColor"></div>
+    <div [style.width]="width" [style.top]="top" [style.left]="left" class="all">
+        <div class="popup-header" nz-row>
+            <div nz-col [nzSpan]="22" class="left">
+                <span *ngIf="title"> {{title}} </span>
+                <span *ngIf="!title">
+            <ng-content select="span.title-name"></ng-content>
+        </span>
+            </div>
+            <div nz-col class="right" (click)="closeBtn()">
+                <div class="rightClose">
+                    <!--                    <i nz-icon nzType="close" nzTheme="outline"></i>-->
+                    <i nz-icon type="close" theme="outline"></i>
+                    <!--<ng-content select="div.close"></ng-content>-->
+                </div>
+            </div>
+        </div>
+        <div class="popup-body" [style.maxHeight]="height">
+            <ng-content select="div.content"></ng-content>
+        </div>
+        <div *ngIf="showPopupFooter" class="popup-footer">
+            <ng-content select="div.rightBtn"></ng-content>
+        </div>
+    </div>
+</div>

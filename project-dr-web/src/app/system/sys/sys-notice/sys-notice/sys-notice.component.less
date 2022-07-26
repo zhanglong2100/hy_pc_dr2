@@ -1,0 +1,37 @@
+:host .container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+:host .item > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+}
+
+:host .item > .c1 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+:host .item2 > .c2 {
+    font-weight: bold;
+}
+
+:host ::ng-deep .ant-select {
+    width: 200px;
+}
+
+:host .item {
+    margin-bottom: 20px;
+}
+
+:host .item2 {
+    margin-bottom: 10px;
+}
+
+:host .item-ctl {
+    margin-top: 5px;
+}

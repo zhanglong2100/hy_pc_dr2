@@ -1,0 +1,14 @@
+<ehcache updateCheck="false" name="defaultCache">
+    <!-- 分布式缓存RMI同步(大规模集群、复杂环境慎用) -->
+    <diskStore path="cache"/>
+
+    <!-- 默认缓存配置. -->
+    <defaultCache
+        maxEntriesLocalHeap="10000"
+        eternal="true"
+        overflowToDisk="true"
+        diskPersistent="true"
+        maxEntriesLocalDisk="10000"
+        memoryStoreEvictionPolicy="LRU">
+    </defaultCache>
+</ehcache>

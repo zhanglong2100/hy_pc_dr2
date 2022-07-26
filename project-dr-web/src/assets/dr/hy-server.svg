@@ -1,0 +1,9 @@
+<svg t="1587542253855" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2986"
+     width="16" height="16">
+    <path d="M97 384h830v64H97z" p-id="2987"></path>
+    <path d="M800 288m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z" p-id="2988"></path>
+    <path d="M800 544.5m-32 0a32 32 0 1 0 64 0 32 32 0 1 0-64 0Z" p-id="2989"></path>
+    <path d="M512 864m-64 0a64 64 0 1 0 128 0 64 64 0 1 0-128 0Z" p-id="2990"></path>
+    <path d="M492 671h40v193h-40z" p-id="2991"></path>
+    <path d="M128 844h768v40H128zM896 192v448H128V192h768m64-64H64v576h896V128z" p-id="2992"></path>
+</svg>

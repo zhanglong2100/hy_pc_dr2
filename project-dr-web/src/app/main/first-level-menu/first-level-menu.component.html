@@ -1,0 +1,93 @@
+<ul nz-menu [nzMode]="'horizontal'">
+    <ng-container *ngFor="let menu of menus;">
+        <li nz-menu-item *ngIf="menu.data.openType !== 'OPEN'"
+            [routerLink]="menu.routerLink"
+            routerLinkActive="ant-menu-item-selected"
+            class="ant-menu-item" #menu2
+        >
+            {{menu.name}}
+        </li>
+        <li *ngIf="menu.data.openType === 'OPEN'"
+            (click)="openMenu(menu)"
+            class="ant-menu-item" #menu2
+        >
+            {{menu.name}}
+        </li>
+    </ng-container>
+
+    <nz-dropdown [nzTrigger]="'click'" nzBackdrop="false"
+                 [(nzVisible)]="subMenusColor2"
+                 *ngIf="subMenus.length > 0 && subMenus.length !== this.menus.length">
+        <div
+            nz-dropdown
+            [class.dropDownIcon]="subMenusColor2"
+            class="dropUpIcon"
+        >
+            <i nz-icon nzType="dr:other_yw" theme="fill" style="font-size: 16px;"></i>
+        </div>
+        <ul nz-menu>
+            <li nz-menu-item *ngFor="let menu of subMenus; let index = index;" routerLink="{{menu.routerLink}}">
+                {{menu.name}}
+            </li>
+        </ul>
+    </nz-dropdown>
+
+    <li nz-menu-item
+        *ngIf="showBack"
+        (click)="backToParent()">
+        <i nz-icon nzType="dr:back_yw" theme="fill" style="font-size: 16px"></i>
+    </li>
+
+    <div class="drop-lb"></div>
+
+    <nz-dropdown
+        [nzTrigger]="'click'"
+        nzBackdrop="false"
+        [(nzVisible)]="settingsColor2"
+        (nzVisibleChange)="visibleChange($event)">
+        <div nz-dropdown [class.dropDownIcon]="settingsColor2" class="dropUpIcon userDrop">
+            <span title="修改用户资料">{{sessionUser.userName}}</span>
+            <span *ngIf="sessionUser.mainDeptName"
+                  title="切换部门"
+                  (click)="changeDeptClick($event)">【{{sessionUser.mainDeptName}}】</span>
+            <i nz-icon nzType="caret-down" theme="outline"></i>
+        </div>
+        <ul nz-menu>
+            <ng-container *ngIf="showModifyList">
+                <li nz-menu-item (click)="showModifyUser = true">
+                    <i nz-icon nzType="dr:edit_yw" theme="fill" style="font-size: 16px;"></i>
+                    修改资料
+                </li>
+                <li nz-menu-item (click)="showModifyPassword = true">
+                    <i nz-icon nzType="dr:hy-modify-password" theme="fill" style="font-size: 16px;"></i>
+                    修改密码
+                </li>
+                <li nz-menu-item (click)="signOut()">
+                    <i nz-icon nzType="dr:exit_yw" theme="fill" style="font-size: 16px;"></i>
+                    退出系统
+                </li>
+            </ng-container>
+            <ng-container *ngIf="! showModifyList">
+                <ng-container *ngFor="let dept of depts">
+                    <li nz-menu-item (click)="changeDept(dept.orgId)">
+                        {{dept.orgName}}
+                    </li>
+                </ng-container>
+            </ng-container>
+        </ul>
+    </nz-dropdown>
+</ul>
+
+<ng-container *ngIf="showModifyUser">
+    <ou-user-modify
+        [record]="record"
+        (eventClose)="showModifyUser = false">
+    </ou-user-modify>
+</ng-container>
+
+<ng-container *ngIf="showModifyPassword">
+    <ou-password-modify
+        (eventClose)="showModifyPassword = false"
+    >
+    </ou-password-modify>
+</ng-container>

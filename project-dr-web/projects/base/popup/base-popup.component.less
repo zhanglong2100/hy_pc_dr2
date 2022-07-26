@@ -1,0 +1,85 @@
+@import "../../../src/variables.less";
+
+//弹出框整体样式
+:host .all {
+    position: fixed;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    //top: 50%;
+    //left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 99;
+}
+
+//遮罩层
+:host .mask {
+    background: rgba(250, 13, 27, 0.55);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+
+//标题栏样式
+:host .popup-header {
+    background-color: @sb-primary-color;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    //padding: 9px 10px 4px 5px; /*标题栏高度50px*/
+    padding: 7px 10px 1px 5px; /*标题栏高度45px*/
+}
+
+//标题栏文字样式
+:host .left {
+    color: #fff;
+    padding-left: 10px;
+    line-height: 33px;
+}
+
+//标题栏关闭按钮样式
+:host .right {
+    color: #fff;
+    width: calc(100% - 91.7%);
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    display: inline-block;
+}
+
+:host .rightClose {
+    width: 32px;
+    float: right;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+:host .rightClose:hover {
+    background-color: @sb-color-5;
+}
+
+//主要内容样式
+:host .popup-body {
+    padding: 10px;
+    overflow: auto;
+}
+
+:host .popup-body, :host .footer {
+    background-color: #fff;
+}
+
+//脚部按钮样式
+:host .popup-footer {
+    text-align: center;
+    padding: 10px 10px 10px 0;
+    background: #ffffff;
+}
+
+@media screen and (max-width: 1366px) {
+    :host .header {
+        padding: 3px 10px 0 5px; /*标题栏高度40px*/
+    }
+}

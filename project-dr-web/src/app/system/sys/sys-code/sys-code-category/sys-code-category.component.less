@@ -1,0 +1,32 @@
+@import "../../../../../variables.less";
+
+:host .tree-container {
+    padding: 5px 25px 0 25px;
+    overflow: auto;
+}
+
+:host .tree-node span.hover-icon {
+    display: none;
+}
+
+:host .tree-node:hover span.hover-icon {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 0 3px;
+}
+
+:host .tree-node > .title-name {
+    margin-left: 8px;
+    vertical-align: top;
+    padding: 5px 2px;
+}
+
+:host .tree-node > .title-code {
+    margin-left: 5px;
+    background-color: #e6ebee;
+    padding: 5px;
+}
+
+:host .category-tree-container {
+    height: calc(100% - 52px);
+}

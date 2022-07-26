@@ -1,0 +1,33 @@
+:host .container {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+}
+
+:host .content {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -45%);
+}
+
+:host .content > * {
+    text-align: center;
+}
+
+:host .content > .tip-text {
+    color: #1596e9;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 40px;
+}
+
+:host .content > .tip-button {
+    padding-top: 20px;
+}
+
+:host .content > .tip-button > button {
+    background: #fff;
+    border: 1px solid #f4f4f4;
+    border-radius: 4px;
+}

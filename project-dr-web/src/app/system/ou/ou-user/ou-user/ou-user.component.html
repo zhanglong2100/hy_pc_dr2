@@ -1,0 +1,46 @@
+
+<nz-card>
+    <base-grid
+        #baseGrid
+        [showRefresh]="false"
+        [name]="'用户'"
+        [keyField]="'userId'"
+        [usePage]="true"
+        [showSort]="false"
+        [columns]="columns"
+        [schema]="schema"
+        [popupWidth]="800"
+        [showModify]="false"
+        [recordWrapper]="recordWrapper.bind(this)"
+        [customButtons]="customButtons"
+        [afterDetailInit]="afterDetailInit.bind(this)"
+        [searchForm]="searchForm"
+    >
+    </base-grid>
+    <ng-template #customButtons>
+        <button
+            nz-button
+            *ngIf="this.baseGrid.checkData.length > 0"
+            nz-popconfirm
+            nzTitle="是否重置密码?"
+            nzOkText="确认"
+            nzCancelText="取消"
+            (nzOnConfirm)="resetPassword()"
+        >
+            <i nz-icon nzType="dr:hy-reset-password" nzTheme="outline"></i>
+            重置密码
+        </button>
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton"
+                        style="width: 400px ;float: right;margin-right: 2%;">
+            <input type="text" nz-input placeholder="请输入用户名或者登录名" [(ngModel)]="searchValue"/>
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" (click)="doSearch()">
+                <i nz-icon nzType="search"></i>搜索
+            </button>
+            <button nz-button nzType="primary" (click)="redo()">
+                <i nz-icon nzType="redo"></i>重置
+            </button>
+        </ng-template>
+    </ng-template>
+</nz-card>

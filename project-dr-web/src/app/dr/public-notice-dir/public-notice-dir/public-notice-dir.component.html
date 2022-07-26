@@ -1,0 +1,161 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="8">
+            <div class="inner-panel">
+                <base-tree
+                    #baseTree
+                    [showSearch]="true"
+                    [globalName]="'公告目录'"
+                    (selectNode)="selectNode($event)"
+                    [draggable]="true"
+                    [beforeDrop]="beforeDrop.bind(this)"
+                    [typeIcon]="typeIcon"
+                    [showTypeIcon]="true"
+                    [showRoot]="true"
+                    [treeNodeTemplate]="treeNodeTemplate">
+                    <ng-template #treeNodeTemplate let-node>
+                        <div class="tree-node" style="display: inline-block;"
+                             [class.active]="baseTree.activatedNode?.key === node.key">
+                                <span>
+                                    <img *ngIf="node.origin.data.iconId" class="menu-node-img"
+                                         [src]="node.origin.data.iconData">
+                                   <i *ngIf="! node.origin.data.iconId" nz-icon
+                                      [nzType]="node.origin.type === 'FOLDER' ? 'dr:hy-module' : node.origin.type === 'FILE' ? 'dr:hy-menu' : 'dr:hy-application'"
+                                      theme="fill"></i>
+                                </span>
+                            <span class="title-name">{{ node.title }}</span>
+                        </div>
+                    </ng-template>
+                </base-tree>
+            </div>
+        </div>
+
+        <div class="outer-panel" nz-col nzSpan="16" *ngIf="showRightOnePanel" >
+            <div class="inner-panel"  >
+                <base-grid
+                    [name]="'目录管理'"
+                    [keyField]="'id'"
+                    [nameField]="'name'"
+                    [usePage]="false"
+                    [showSort]="true"
+                    [schema]="schema"
+                    [columns]="columns"
+                    [searchForm]="searchForm"
+                    [showType]="'list'"
+                    [usePopup]="false"
+                    [popupWidth]="'650px'"
+                    (customDetailClick)="customDetailClick($event)"
+                    [recordWrapper]="recordWrapper.bind(this)"
+                    (dataReload)="onDataReload()"
+                    [showTableListChange]="true"
+                    [beforeRemove]="beforeRemove.bind(this)"
+                   >
+                </base-grid>
+            </div>
+        </div>
+
+
+
+
+        <div class="outer-panel" nz-col nzSpan="16" *ngIf="showRightTwoPanel">
+            <div class="inner-panel">
+
+                <div class="mb-md" style="width: 100%;">
+                    <nz-input-group nzAddOnBefore="名称：" style="width: 150px;">
+                        <label>
+                            <input nz-input [(ngModel)]="searchForm.name" style="width: 150px;" class="mr-sm">
+                        </label>
+                    </nz-input-group>
+                    &nbsp;&nbsp;
+                    &nbsp;&nbsp;
+                    <nz-input-group nzAddOnBefore="创建时间：" style="margin-left: 50px;width: 500px;">
+                        <nz-range-picker [(ngModel)]="dateRange"
+                                         [nzFormat]="dateFormat"
+                                         (ngModelChange)="dateRangeOnChange($event)"
+                        ></nz-range-picker>
+                    </nz-input-group>
+                    &nbsp;&nbsp;
+                    &nbsp;&nbsp;
+                    <button nz-button nzType="primary" id="searchBtn" (click)="doSearch()"><i nz-icon nzType="search"></i>搜索
+                    </button>
+                    <button nz-button nzType="primary" id="redoBtn" (click)="reset()"><i nz-icon nzType="redo"></i>重置
+                    </button>
+                </div>
+
+
+                <base-grid
+                    [name]="'文件管理'"
+                    [keyField]="'id'"
+                    [usePage]="false"
+                    [showSort]="false"
+                    [showRefresh]="false"
+                    [columns]="columnsFile"
+                    [searchForm]="searchForm"
+                    [showOperateDelete]="false"
+                    [showOperateModify]="false"
+                    [showAdd]="false"
+                    [showModify]="false"
+                    [customButtons]="upload"
+                    [showType]="'table'"
+                    [scroll] = "{ y: 'auto' }"
+
+                >
+                </base-grid>
+            </div>
+        </div>
+
+
+        <ng-template #upload>
+
+         <div  style="float: left;width: auto;">
+            <ng-container >
+                <button nz-button (click)="download(); "><i nz-icon nzType="export" theme="outline"></i>下载文件
+                </button>
+            </ng-container>
+
+            <ng-container >
+                <button nz-button (click)="downloadFolder(); "><i nz-icon nzType="export" theme="outline"></i>下载文件夹
+                </button>
+            </ng-container>
+
+            <ng-container >
+                <nz-upload
+                    style="margin-left: 10px;margin-right: 10px;"
+                    [nzShowUploadList]="true"
+                    [nzAction]="uploadUrl"
+                    [nzFileList]="nzFileList"
+                    (nzChange)="handleChange"
+                    [nzCustomRequest]="customRequst.bind(this)"
+                    [nzBeforeUpload]="before.bind(this)"
+                    [nzMultiple]="true"
+                >
+                    <button nz-button><i nz-icon nzType="upload"></i>上传文件</button>
+                </nz-upload>
+            </ng-container>
+         </div>
+
+            <div  style="float: left;width: auto;margin-right: 10px;">
+
+            <ng-container >
+                <nz-upload
+                    style="margin-left: 10px;margin-right: 10px;"
+                    [nzShowUploadList]="true"
+                    [nzAction]="uploadUrl"
+                    [nzFileList]="nzFileList"
+                    (nzChange)="handleChange"
+                    [nzCustomRequest]="customRequst.bind(this)"
+                    [nzBeforeUpload]="before.bind(this)"
+                    [nzMultiple]="true"
+                    [nzDirectory]="true"
+                >
+                    <button nz-button><i nz-icon nzType="upload"></i>上传文件夹</button>
+                </nz-upload>
+            </ng-container>
+
+            </div>
+
+        </ng-template>
+
+
+    </nz-card>
+</div>

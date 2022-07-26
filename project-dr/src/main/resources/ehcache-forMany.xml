@@ -1,0 +1,58 @@
+<ehcache updateCheck="false" name="defaultCache">
+    <!-- 分布式缓存RMI同步(大规模集群、复杂环境慎用) -->
+    <diskStore path="java.io.tmpdir"/>
+    <cacheManagerPeerProviderFactory
+        class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+        properties="peerDiscovery=automatic,multicastGroupAddress=230.0.0.1, multicastGroupPort=4446"/>
+
+    <cacheManagerPeerListenerFactory
+        class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"/>
+
+    <!-- 默认缓存配置. -->
+    <defaultCache
+        maxEntriesLocalHeap="100"
+        eternal="false"
+        timeToIdleSeconds="300"
+        timeToLiveSeconds="600"
+        overflowToDisk="true"
+        maxEntriesLocalDisk="100000">
+        <cacheEventListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+            properties="replicatePuts=false,replicateUpdatesViaCopy=false"/>
+    </defaultCache>
+
+    <!-- 系统缓存 -->
+    <cache name="sysCache"
+           maxEntriesLocalHeap="100"
+           eternal="true"
+           overflowToDisk="true">
+        <cacheEventListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>
+    </cache>
+
+    <!-- 系统活动会话缓存 -->
+    <cache name="shiro-activeSessionCache"
+           maxEntriesLocalHeap="10000"
+           overflowToDisk="true"
+           eternal="true"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="600">
+        <cacheEventListenerFactory
+            class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+            properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,
+                replicateUpdatesViaCopy=false, replicateRemovals=true "/>
+    </cache>
+
+    <!-- 监测缓存 -->
+    <cache name="monitorCache"
+           maxElementsInMemory="10000"
+           overflowToDisk="true"
+           eternal="true"
+           timeToLiveSeconds="0"
+           timeToIdleSeconds="0"
+           diskPersistent="true"
+           diskExpiryThreadIntervalSeconds="600">
+    </cache>
+</ehcache>

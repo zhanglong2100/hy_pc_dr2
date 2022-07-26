@@ -1,0 +1,36 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="6">
+            <div class="inner-panel">
+                <ou-org-user-tree-select-panel
+                    [searchConfig]="searchConfig"
+                    (selectNode)="selectNode($event)"
+                    #baseTree>
+                </ou-org-user-tree-select-panel>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="18">
+            <div class="inner-panel">
+                <base-grid
+                    #bg
+                    [name]="'用户角色'"
+                    [keyField]="'userId'"
+                    [nameField]="'roleName'"
+                    [usePage]="true"
+                    [showSort]="false"
+                    [schema]="schema"
+                    [columns]="[]"
+                    [showModify]="false"
+                    [showOperateModify]="false"
+                    [searchForm]="searchForm"
+                    [customLoadMethod]="customLoadMethod.bind(this)"
+                    [customCommitMethod]="customCommitMethod.bind(this)"
+                    [customRemoveMethod]="customRemoveMethod.bind(this)"
+                    [showType]="'list'"
+                    [recordWrapper]="recordWrapper.bind(this)"
+                    [popupWidth]="500"
+                ></base-grid>
+            </div>
+        </div>
+    </nz-card>
+</div>

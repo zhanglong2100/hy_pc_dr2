@@ -1,0 +1,30 @@
+config:
+  swagger: true
+  db:
+    create-table: false
+  logback:
+    outLevel: WARN
+    fileLevel: ALL
+spring:
+  datasource:
+#    url: jdbc:mysql://localhost:3306/dadi_dr?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: dadi
+#    password: T3swh33s
+#    url: jdbc:mysql://192.168.0.195:3336/dr?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: qd
+#    password: qd
+#    url: jdbc:mysql://192.168.0.40:3306/pc?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: Abc123
+    url: jdbc:mysql://localhost:3306/pc?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: pc
+    password: pc
+logging:
+  level:
+    root: warn
+server:
+  port: 7085

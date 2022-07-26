@@ -1,0 +1,69 @@
+
+:host ::ng-deep .ant-tree {
+    overflow: hidden;
+    margin: 0 -24px;
+    padding: 0 24px;
+}
+
+:host ::ng-deep .ant-tree li {
+    padding: 0;
+}
+
+:host ::ng-deep .ant-tree li span.ant-tree-switcher {
+    padding: 2px 0;
+    box-sizing: content-box;
+}
+
+:host .custom-node {
+    cursor: pointer;
+    line-height: 24px;
+    margin-left: 4px;
+    display: inline-block;
+    margin: 0 -1000px;
+    padding: 0px 1000px;
+}
+
+:host .custom-node:hover {
+    background-color: #79c0ff;
+}
+
+:host .active {
+    background: #1890ff;
+    color: #fff;
+}
+
+
+:host .file-name,
+:host .folder-name {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+:host .file-desc,
+:host .folder-desc {
+    padding: 0 8px;
+    display: inline-block;
+    background: #87ceff;
+    color: #ffffff;
+    position: relative;
+    left: 12px;
+}
+
+:host .hy-icon {
+    vertical-align: middle;
+}
+
+:host .hy-icon.tree-info {
+    margin-left: 40px;
+    display: none;
+}
+
+:host .terminal-tree {
+    margin-top: 10px;
+    padding: 0 25px;
+    overflow: auto;
+}
+
+:host .custom-node:hover .hy-icon.tree-info {
+    display: inline-block;
+}

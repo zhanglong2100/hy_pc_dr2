@@ -1,0 +1,63 @@
+<div class="fullscreen" nz-row>
+    <nz-card>
+        <div class="outer-panel" nz-col nzSpan="6">
+            <div class="inner-panel">
+                <ou-org-user-tree-select-panel
+                    [searchConfig]="searchConfig"
+                    (selectNode)="selectNode($event)"
+                    #baseTree>
+                </ou-org-user-tree-select-panel>
+            </div>
+        </div>
+        <div class="outer-panel" nz-col nzSpan="18">
+            <div class="inner-panel">
+<!--                                <div style="padding: 10px 10px 0 10px;">-->
+<!--                                    当前机构：-->
+<!--                                    <ou-org-user-tree-select-->
+<!--                                        [searchConfig]="searchConfig"-->
+<!--                                        [disabled]="true"-->
+<!--                                        [(ngModel)]="baseParam.orgId" style="width: 200px"></ou-org-user-tree-select>-->
+<!--                                </div>-->
+                <div style="height: calc(100% - 42px)">
+                    <base-grid
+                        #baseGrid
+                        [listUlHeight]="350"
+                        [name]="'用户'"
+                        [keyField]="'id'"
+                        [popupHeight]="'450'"
+                        [popupWidth]="'820'"
+                        [nameField]="'userName'"
+                        [usePage]="true"
+                        [baseParam]="baseParam"
+                        [showSort]="false"
+                        [columns]="columns"
+                        [schema]="schema"
+                        [showModify]="false"
+                        [customButtons]="customButtons"
+                        [customLoadPageMethod]="customLoadPageMethod.bind(this)"
+                        [customCommitMethod]="customCommitMethod.bind(this)"
+                        [beforeDataRender]="beforeDataRender.bind(this)"
+                        [afterDetailInit]="afterDetailInit.bind(this)"
+                        (customDetailClick)="customDetailClick($event)"
+                    >
+                    </base-grid>
+                </div>
+            </div>
+        </div>
+    </nz-card>
+</div>
+
+<ng-template #customButtons>
+    <button
+        nz-button
+        *ngIf="this.baseGrid.checkData.length > 0"
+        nz-popconfirm
+        nzTitle="是否重置密码?"
+        nzOkText="确认"
+        nzCancelText="取消"
+        (nzOnConfirm)="resetPassword()"
+    >
+        <i nz-icon nzType="dr:hy-reset-password" nzTheme="outline"></i>
+        重置密码
+    </button>
+</ng-template>

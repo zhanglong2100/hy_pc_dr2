@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>project-dr-parent</artifactId>
+        <groupId>com.sbwork</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <packaging>${package.type}</packaging>
+
+    <artifactId>project-dr</artifactId>
+    <properties>
+        <start-class>com.sbwork.dr.DataReceiveApplication</start-class>
+    </properties>
+
+
+    <profiles>
+        <profile>
+            <id>webjar</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.sbwork</groupId>
+                    <artifactId>project-dr-web</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+    <dependencies>
+
+        <!-- java网络爬虫框架 -->
+<!--        <dependency>
+            <groupId>cn.edu.hfut.dmic.webcollector</groupId>
+            <artifactId>WebCollector</artifactId>
+            <version>2.52</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.44.0</version>
+        </dependency>
+
+        &lt;!&ndash;图像识别OCR&ndash;&gt;
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>4.5.2</version>
+        </dependency> -->
+
+        <!-- 百度aip  图像识别使用 -->
+<!--        <dependency>
+            <groupId>com.baidu.aip</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>4.16.7</version>
+        </dependency>-->
+
+        <!-- hutool工具类， 主要用网络请求工具类 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.7.14</version>
+        </dependency>
+
+
+        <!-- html dom解析 https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.14.3</version>
+        </dependency>
+
+        <!--easypoi与SpringBoot的整合包-->
+        <dependency>
+            <groupId>cn.afterturn</groupId>
+            <artifactId>easypoi-spring-boot-starter</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-core</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-core-mysql</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-cache-ehcache</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-cache-for-shiro</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-common-log-helper</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-sys</artifactId>
+            <version>${sb-framework.sys.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-login</artifactId>
+            <version>${sb-framework.sys.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-common-config</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.aviator</groupId>
+            <artifactId>aviator</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>3.0.1</version>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+        <!-- 测试模块 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.43.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-websocket</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>2.1.3</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

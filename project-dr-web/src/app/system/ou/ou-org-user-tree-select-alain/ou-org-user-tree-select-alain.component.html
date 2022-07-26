@@ -1,0 +1,19 @@
+<sf-item-wrap [id]="id"
+              [schema]="schema"
+              [ui]="ui"
+              [showError]="showError"
+              [error]="error"
+              [showTitle]="schema.title">
+    <!-- 开始自定义控件区域 -->
+
+    <ou-org-user-tree-select
+        [rootOrgId]="ui.rootOrgId"
+        [searchConfig]="ui.searchConfig"
+        [valueChange]="ui.valueChange"
+        [(ngModel)]="selectedValue"
+        (ngModelChange)="setValue($event)"
+        [disabled]="disabled"
+        style="width: 100%"
+    ></ou-org-user-tree-select>
+    <!-- 结束自定义控件区域 -->
+</sf-item-wrap>

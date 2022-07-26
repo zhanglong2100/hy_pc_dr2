@@ -1,0 +1,85 @@
+<div style="padding: 10px 10px 0 10px" class="abc">
+    <button *ngIf="showAddItem" nz-button
+            (click)="addItem()">
+        <i
+            nz-icon [nzType]="'plus'"
+            theme="outline"></i>新增下级字典项
+    </button>
+    <button *ngIf="showRefresh" nz-button (click)="reload(); ">
+        <i nz-icon nzType="reload"
+           theme="outline"></i>刷新
+    </button>
+    <nz-upload
+        style="display: inline-block;"
+        [nzAccept]="['application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']"
+        [nzShowUploadList]="true"
+        [nzAction]="uploadUrl"
+        [nzFileList]="nzFileList"
+        [nzData]="uploadParam"
+        (nzChange)="handleChange"
+        [nzCustomRequest]="customRequst.bind(this)"
+        [nzBeforeUpload]="before.bind(this)"
+    >
+        <button nz-button><i nz-icon nzType="upload"></i>上传Excel</button>
+    </nz-upload>
+    <button nz-button (click)="doDownload(); ">
+        <i nz-icon nzType="reload"
+           theme="outline"></i>导出
+
+    </button>
+</div>
+<div class="code-tree-container">
+    <base-tree
+        #baseTree
+        [showSearch]="false"
+        [globalName]="'字典项'"
+        (selectNode)="selectNode($event)"
+        [treeNodeTemplate]="treeNodeTemplate"
+        [searchConfig]="baseParam"
+        [showRoot]="true"
+    ></base-tree>
+</div>
+<ng-template #treeNodeTemplate let-node>
+    <div class="tree-node"
+         [class.active]="activatedNode?.id === node.key"
+         [attr.draggable]="baseTree.draggable && !node.isDisabled ? true : null"
+         [attr.aria-grabbed]="baseTree.draggable && !node.isDisabled ? true : null"
+         [class.draggable]="baseTree.draggable && !node.isDisabled ? true : null"
+    >
+        <span *ngIf="node.origin.type === 'root'">
+           <i nz-icon nzType="dr:hy-root" theme="fill"></i>
+        </span>
+        <span *ngIf="node.origin.type === 'leaf'">
+           <i nz-icon nzType="dr:hy-terminal" theme="fill"></i>
+        </span>
+        <span class="title-name">{{ node.title }}
+            <span class="title-code" *ngIf="node.origin.type==='leaf'">{{ '【' + node.origin.data.code + '】'}}</span>
+        </span>
+
+        <span (click)="modifyClick($event, node.origin)" class="hover-icon">
+                   <i nz-icon nzType="edit" theme="fill" title="修改"></i>
+                </span>
+        <span nz-popconfirm
+              [title]="'删除'"
+              class="hover-icon"
+              nzTitle="是否删除?"
+              nzOkText="确认"
+              nzCancelText="取消"
+              (nzOnConfirm)="deleteClick(node.origin)"><i nz-icon nzType="delete" theme="outline"></i>
+        </span>
+    </div>
+</ng-template>
+<ng-container *ngIf="_showDetailPanel">
+    <base-detail
+        [baseParam]="baseParam"
+        [schema]="schema"
+        [name]="'字典项'"
+        [usePopup]="true"
+        [detailPanelType]="detailPanelType"
+        [record]="detailRecord"
+        [width]="550"
+        [height]="350"
+        (eventClose)="detailClose($event)"
+    >
+    </base-detail>
+</ng-container>

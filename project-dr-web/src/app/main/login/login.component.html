@@ -1,0 +1,71 @@
+<div class="login-container">
+    <div class="login-header"></div>
+    <div class="login-body">
+        <div class="picture"></div>
+        <div class="login-form-container">
+            <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group nzPrefixIcon="anticon anticon-dr:u">
+                            <input type="text" nz-input formControlName="userName"
+                                   [(ngModel)]="login.userName"
+                                   placeholder="请输入用户名">
+                        </nz-input-group>
+                        <nz-form-explain
+                            *ngIf="validateForm.get('userName').dirty && validateForm.get('userName').errors">
+                            请输入用户名！
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control>
+                        <nz-input-group nzPrefixIcon="anticon anticon-dr:password">
+                            <input type="password" nz-input formControlName="password"
+                                   [(ngModel)]="login.password" placeholder="请输入密码">
+                        </nz-input-group>
+                        <nz-form-explain
+                            *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">
+                            请输入密码！
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item *ngIf="orgs?.length > 0">
+                    <nz-form-control>
+                        <nz-input-group nzPrefixIcon="anticon anticon-dr:org">
+                            <nz-select [(ngModel)]="login.orgId" [ngModelOptions]="{standalone: true}"
+                                       nzPlaceHolder="请选择部门">
+                                <nz-option *ngFor="let org of orgs" [nzValue]="org.orgId"
+                                           [nzLabel]="org.orgName"></nz-option>
+                            </nz-select>
+                        </nz-input-group>
+                        <nz-form-explain
+                            *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">
+                            请选择部门！
+                        </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item *ngIf="mainService.getNeedVerifyCode()" style="position:relative;">
+                    <nz-form-control class="cc">
+                        <input type="text" nz-input formControlName="verifyCode"
+                               [(ngModel)]="login.verifyCode" placeholder="请输入验证码">
+                    </nz-form-control>
+                    <div class="yzm-namer">
+                        <img class="getVerifyCodeImage" [src]="verifyCodeSrc" (click)="refreshVerifyCode()" alt="验证码">
+                    </div>
+                </nz-form-item>
+                <span *ngIf="errorMessage" class="errorMessage">{{errorMessage}}</span>
+                <nz-form-item class="last-item">
+                    <nz-form-control>
+                        <label nz-checkbox formControlName="rememberMe"
+                               [(ngModel)]="login.rememberMe" class="rememberMe">
+                            <span>记住我</span>
+                        </label>
+                        <a class="login-form-forgot" (click)="forgotPassword()">忘记密码</a>
+                    </nz-form-control>
+                </nz-form-item>
+                <button (click)="doLogin()" nz-button class="login-form-button" [nzType]="'primary'">登录</button>
+            </form>
+        </div>
+    </div>
+    <!--<div class="footer-text">Powered by GZZD 1.0 ©2019-2020 广州智道科技有限公司</div>-->
+</div>

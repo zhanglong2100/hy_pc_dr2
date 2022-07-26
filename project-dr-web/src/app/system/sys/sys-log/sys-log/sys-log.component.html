@@ -1,0 +1,97 @@
+<nz-card>
+    <nz-list [nzBordered]="'true'">
+        <nz-row>
+            <nz-list-item id="searchPart">
+                &nbsp;
+                &nbsp;
+                <div id="bigLog">
+                    <span>日志大类：</span>
+                    &nbsp;
+                    <nz-select [(ngModel)]="firstSelect" nzPlaceHolder="全部"
+                               (ngModelChange)="reload('logType1',$event)">
+                        <nz-option nzLabel="{{i.name}}" nzValue="{{i.code}}" [(ngModel)]="logBigCodes"
+                                   *ngFor="let i of logBigCodes"></nz-option>
+                    </nz-select>
+                </div>
+
+                <div id="smallLog">
+                    <span>日志小类：</span>
+                    &nbsp;
+                    <nz-select [(ngModel)]="secondSelect" id="smallSelect"
+                               nzPlaceHolder="全部"
+                               (ngModelChange)="reload('logType2',$event)">
+                        <nz-option nzLabel="{{i.name}}" nzValue="{{i.code}}"
+                                   *ngFor="let i of logSmallCodes"></nz-option>
+                    </nz-select>
+                </div>
+
+                <div id="userSearch">
+                    <span>操作用户：</span>
+                    &nbsp;
+                    <input style="width: 200px" type="text" nz-input placeholder="请输入查询内容" [(ngModel)]="userValue"/>
+
+                </div>
+
+                <div id="ipSearch">
+                    <span>操作IP：</span>
+                    &nbsp;
+                    <input style="width: 200px" type="text" nz-input placeholder="请输入查询内容" [(ngModel)]="ipValue"/>
+                </div>
+
+            </nz-list-item>
+        </nz-row>
+        <nz-row>
+            <nz-list-item id="searchPart3">
+                &nbsp;
+                &nbsp;
+                <div id="logTime">
+                    <div nzSize="small" nzButtonStyle="solid" (ngModelChange)="reload('date',$event)"
+                         [(ngModel)]="date">
+                        <span>筛选时间：</span>
+                        &nbsp;
+                        <nz-range-picker
+                            [nzShowTime]="{ nzFormat: 'HH:mm:ss' }"
+                            nzFormat="yyyy-MM-dd HH:ss"
+                            [nzPlaceHolder]="['开始时间', '结束时间']"
+                            [(ngModel)]="dateRange"
+                            (nzOnOk)="onOk($event)"
+                        >
+                        </nz-range-picker>
+                        &nbsp;&nbsp;
+                        &nbsp;&nbsp;
+                        <button nz-button nzType="primary" id="searchBtn" (click)="doSearch()"><i nz-icon
+                                                                                                  nzType="search"></i>搜索
+                        </button>
+                        <button nz-button nzType="primary" id="redoBtn" (click)="reset()"><i nz-icon nzType="redo"></i>重置
+                        </button>
+                    </div>
+                </div>
+            </nz-list-item>
+        </nz-row>
+    </nz-list>
+    <!--    <input (ngModelChange)="searchByInput()" style="width: 200px" type="text" nz-input placeholder="请输入查询内容"-->
+    <!--           [(ngModel)]="searchForm.ip"/>-->
+
+
+    <base-grid
+        #baseGrid
+        [showRefresh]="false"
+        [name]="'日志'"
+        [usePage]="true"
+        [columns]="columns"
+        [schema]="schema"
+        [showAdd]="false"
+        [showModify]="false"
+        [showDelete]="false"
+        [showOperateDelete]="false"
+        [showOperateModify]="false"
+        [searchForm]="searchForm"
+        [customContent]="customContent"
+    >
+    </base-grid>
+    <ng-template #customContent let-node>
+        <div class="total">
+            共<span class="total-value">{{baseGrid.total}}</span>宗
+        </div>
+    </ng-template>
+</nz-card>

@@ -1,0 +1,65 @@
+<nz-card>
+    <div class="container">
+        <div class="item">
+            <p class="c1">通知配置</p>
+            <nz-switch
+                [(ngModel)]="sysNotice.active"
+                (ngModelChange)="doCommit()"
+                nzCheckedChildren="开启"
+                nzUnCheckedChildren="关闭"
+                style="margin-left: 50px;">
+            </nz-switch>
+        </div>
+        <div class="item2">
+            <label
+                nz-checkbox
+                [(ngModel)]="sysNotice.msgActive"
+                (ngModelChange)="doCommit()"
+                class="c2">
+                短信平台
+            </label>
+            <div class="item-ctl">
+                <nz-select
+                    [(ngModel)]="sysNotice.msgType"
+                    (ngModelChange)="doCommit()">
+                    <nz-option nzValue="A_LI_YUN" nzLabel="阿里云短信"></nz-option>
+                    <nz-option nzValue="JG" nzLabel="极光短信"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="item2">
+            <label
+                nz-checkbox
+                [(ngModel)]="sysNotice.appActive"
+                (ngModelChange)="doCommit()"
+                class="c2">
+                app推送
+            </label>
+            <div class="item-ctl">
+                <nz-select
+                    [(ngModel)]="sysNotice.appType"
+                    (ngModelChange)="doCommit()">
+                    <nz-option nzValue="JG" nzLabel="极光推送"></nz-option>
+                </nz-select>
+            </div>
+        </div>
+        <div class="item2">
+            <label
+                nz-checkbox
+                [(ngModel)]="sysNotice.weChartPublicActive"
+                (ngModelChange)="doCommit()"
+                class="c2">
+                微信公众号
+            </label>
+        </div>
+        <div class="item2">
+            <label
+                nz-checkbox
+                [(ngModel)]="sysNotice.emailActive"
+                (ngModelChange)="doCommit()"
+                class="c2">
+                E-Mail
+            </label>
+        </div>
+    </div>
+</nz-card>

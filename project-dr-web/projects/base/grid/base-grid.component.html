@@ -1,0 +1,188 @@
+<div class="base-grid-container">
+    <div [style.display]="_showDetailPanel && ! usePopup ? 'none' : 'block'">
+        <div class="abc" *ngIf="showToolbar">
+            <button *ngIf="showAdd" nz-button (click)="addClick()">
+                <i
+                    nz-icon nzType="plus"
+                    theme="outline"></i>{{addButtonText ? addButtonText : '新增'}}
+            </button>
+            <button *ngIf="showModify && checkData && checkData.length === 1" nz-button
+                    (click)="modifyClick(checkData[0], $event)">
+                <i
+                    nz-icon [nzType]="this.showDetailButton ? 'edit': 'snippets'"
+                    theme="outline"></i>{{modifyButtonText ? modifyButtonText : (this.showDetailButton ? '修改' : '查看')}}
+            </button>
+            <button *ngIf="showDelete && checkData && checkData.length > 0" nz-button nz-popconfirm
+                    nzTitle="是否{{ deleteButtonText || '删除'}}?"
+                    nzOkText="确认" nzCancelText="取消"
+                    (nzOnConfirm)="deleteClick()"><i nz-icon nzType="delete"
+                                                     theme="outline"></i>{{ deleteButtonText || '删除'}}
+            </button>
+            <button *ngIf="showRefresh" nz-button (click)="loadTipText = '刷新'; reload(); "><i nz-icon nzType="reload"
+                                                                                              theme="outline"></i>刷新
+            </button>
+            <button *ngIf="showSort" nz-button (click)="sortClick()"><i nz-icon nzType="sort-ascending"
+                                                                        nzTheme="outline"></i>排序
+            </button>
+            <ng-container *ngIf="showTableListChange">
+                <div class="table-list-change">
+                    <a (click)="showType = 'table'" [class.disabled]="showType === 'list'">
+                        <i nz-icon [nzType]="'dr:hy-table'"></i>
+                    </a>
+                    <a (click)="showType = 'list'" [class.disabled]="showType === 'table'">
+                        <i nz-icon [nzType]="'dr:hy-lumps'"></i>
+                    </a>
+                </div>
+            </ng-container>
+            <ng-container *nzStringTemplateOutlet="customButtons">{{ customButtons }}</ng-container>
+        </div>
+        <div class="customContent" *ngIf="customContent">
+            <ng-container *nzStringTemplateOutlet="customContent">{{ customContent }}</ng-container>
+        </div>
+        <div class="cc" *ngIf="showType === 'table' && (! _showDetailPanel || usePopup)">
+            <st [data]="tableDataObservable"
+                [page]="page"
+                [total]="total"
+                [columns]="columns"
+                [rowClassName]="rowClassName"
+                [size]="'middle'"
+                [scroll]="scroll"
+                (change)="change($event)"
+            >
+                <ng-template st-row="edit-checkbox-title" type="title" let-c>
+                    {{ c.title.text}}
+                    <ng-container *ngIf="selectAllConfig && selectAllConfig.property[c.title.text]">
+                        <label
+                            nz-checkbox
+                            [(ngModel)]="selectAllConfig.obj[selectAllConfig.property[c.title.text]]"
+                            (ngModelChange)="selectAllConfig.ngModelChangeFn.call(null, {selected: $event, fieldName: selectAllConfig.property[c.title.text]})"
+                        ></label>
+                    </ng-container>
+                </ng-template>
+                <ng-template st-row="edit-input" let-item let-index="index" let-column="column">
+                    <input nz-input [disabled]="column.editable == false && item['editable']"
+                           [(ngModel)]="item[column.index]"/>
+                </ng-template>
+                <ng-template st-row="edit-select" let-item let-index="index" let-column="column">
+                    <nz-select [(ngModel)]="item[column.index]" [style.width]="'100%'">
+                        <nz-option *ngFor=" let option of column['option']" nzValue="{{option.value}}"
+                                   nzLabel="{{option.name}}"></nz-option>
+                    </nz-select>
+                </ng-template>
+                <ng-template st-row="edit-checkbox" let-item let-index="index" let-column="column">
+                    <label nz-checkbox [(ngModel)]="item[column.index]"></label>
+                </ng-template>
+            </st>
+        </div>
+
+        <div *ngIf="showType === 'list' && (! _showDetailPanel || usePopup)">
+            <div class="list-checkbox" style="margin: 14px 0 0 14px;padding-top: 2px;">
+                <div class="checkbox" style="display: inline-block;margin-bottom: 4px">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="selectAll"> 全选
+                    </label>
+                </div>
+                <div style="margin-left : 30px;display: inline-block;">
+                    已选：<span>{{checkData.length}}</span>个
+                    / 共：<span>{{tableData.length}}</span>个
+                </div>
+            </div>
+            <ul class="list-ul" [style.height]="listUlHeight+'px'">
+                <ng-template ngFor let-item [ngForOf]="tableData">
+                    <li [class.active]="item.checked"
+                        [class.disabled]="!item.disabled && (showListModifyButton || showListDeleteButton)"
+                        (click)="clickItem($event,item)" title="{{item[nameField]}}" (mouseenter)=" item.hover = true;"
+                        (dblclick)="dbClickItem($event,item)"
+                        (mouseleave)=" item.hover = false;">
+                        <i nz-icon class="i-select" *ngIf="!item.disabled" (click)="checkItem($event,item)"
+                           [class.active]="item.checked"></i>
+                        <ng-template
+                            [ngTemplateOutlet]="customListItem ? customListItem : defaultListItem"
+                            [ngTemplateOutletContext]="{ $implicit: item }">
+                        </ng-template>
+                        <div class="i-button" *ngIf="!item.disabled && (showListModifyButton || showListDeleteButton)">
+                            <button *ngIf="item.hover && showListModifyButton " nz-button
+                                    (click)="modifyClick(item, $event)"
+                                    title="修改">
+                                <i nz-icon [nzType]="'edit'" theme="outline"></i>
+                            </button>
+                            <span *ngIf="item.hover && showListModifyButton && showListDeleteButton "></span>
+                            <button [hidden]="!(item.hover && showListDeleteButton)" nz-button
+                                    title="{{ deleteButtonText || '删除'}}" nz-popconfirm
+                                    nzTitle="是否{{ deleteButtonText || '删除'}}?"
+                                    nzOkText="确认" nzCancelText="取消"
+                                    (nzOnConfirm)="deleteRecord([item])">
+                                <i nz-icon nzType="delete" theme="outline"></i>
+                            </button>
+                        </div>
+                    </li>
+                </ng-template>
+            </ul>
+
+            <ng-template #defaultListItem let-item>
+            <span><i nz-icon [nzType]="typeIcon && (typeIcon[item[typeFieldName]] || typeIcon['default']) || 'file'"
+                     theme="fill"></i></span>
+                <div class="i-text">{{item[nameField]}}</div>
+            </ng-template>
+        </div>
+
+        <!--<div *ngIf="showType === _showDetailPanel" class="inner-detail">-->
+        <!--<ng-container *ngIf="customDetail; else defaultDetailTemplate">-->
+        <!--<ng-container *nzStringTemplateOutlet="customDetail">{{ customDetail }}</ng-container>-->
+        <!--</ng-container>-->
+        <!--</div>-->
+
+        <div *ngIf="showType === 'custom' && (! _showDetailPanel || usePopup)">
+            <ng-template
+                [ngTemplateOutlet]="customContainer ? customContainer : defaultContainer"
+                [ngTemplateOutletContext]="{ $implicit: tableData }">
+            </ng-template>
+
+            <ng-template #defaultContainer let-item>
+                <span><i nz-icon nzType="dr:hy-terminal" theme="fill"></i></span>
+                <div class="i-text">{{item[nameField]}}</div>
+            </ng-template>
+        </div>
+    </div>
+
+    <ng-template #defaultDetailTemplate>
+        <ng-container *ngIf="! usePopup">
+            <div class="detail-title">{{name}}</div>
+        </ng-container>
+        <div [class.scoll2]="! usePopup">
+            <base-detail
+                [baseParam]="baseParam"
+                [schema]="schema"
+                [name]="name"
+                [showButton]="showDetailButton"
+                [usePopup]="usePopup"
+                [commitWrapper]="commitWrapper"
+                [recordWrapper]="recordWrapper"
+                [detailPanelType]="detailPanelType"
+                [record]="record"
+                [width]="popupWidth"
+                [height]="popupHeight"
+                [customCommitMethod]="customCommitMethod"
+                (eventClose)="detailClose($event)"
+                [afterInit]="afterDetailInit"
+                (formChangeEvent)="formChange($event)"
+            >
+            </base-detail>
+        </div>
+    </ng-template>
+
+    <ng-container *ngIf="_showDetailPanel">
+        <ng-container *ngIf="customDetail; else defaultDetailTemplate">
+            <ng-container *nzStringTemplateOutlet="customDetail">{{ customDetail }}</ng-container>
+        </ng-container>
+    </ng-container>
+
+
+    <base-sort *ngIf="_showSortPanel"
+               [data]="tableData"
+               [showField]="sortNameField"
+               (eventExit)="_showSortPanel = false"
+               (eventChange)="sortChange($event)"
+    ></base-sort>
+
+</div>

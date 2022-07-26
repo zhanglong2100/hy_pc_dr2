@@ -1,0 +1,24 @@
+<i class="exit-icon" title="退出系统" (click)="exit()"></i>
+<div class="navigation-container">
+    <div class="navigation-header"></div>
+    <div class="navigation-content">
+        <div class="nav-row">
+            <div *ngFor="let showMenu of showMenus1" class="nav-col" [ngClass]="showMenu.code"
+                [routerLink]="['/index/'+ showMenu.code]">
+                <div class="nav-icon">
+                    <img [src]="showMenu.icon">
+                </div>
+                <div class="nav-text">{{showMenu.name}}</div>
+            </div>
+        </div>
+        <div *ngIf="showMenus2" class="nav-row">
+            <div *ngFor="let showMenu of showMenus2" class="nav-col" [ngClass]="showMenu.code"
+                [routerLink]="['/index/'+ showMenu.code]">
+                <div class="nav-icon">
+                    <img [src]="showMenu.icon">
+                </div>
+                <div class="nav-text">{{showMenu.name}}</div>
+            </div>
+        </div>
+    </div>
+</div>

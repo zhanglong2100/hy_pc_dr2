@@ -1,0 +1,42 @@
+@import "../../../src/variables.less";
+
+:host ul.sort-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+:host ul.sort-container li {
+    margin: 5px;
+    padding: 5px 8px;
+    display: inline-block;
+    width: 100px;
+    height: 70px;
+    border: 1px solid #e2dada;
+    background-color: white;
+    cursor: move;
+    vertical-align: top;
+    position: relative;
+}
+
+:host ul.sort-container li .index-sorted {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    color: rgba(166, 229, 245, 0.15);
+    font-size: 40px;
+    position: absolute;
+    left: 0;
+    font-weight: bolder;
+    top: 0;
+    line-height: 70px;
+}
+
+:host ul.sort-container li span {
+    vertical-align: middle;
+}
+
+:host ul.sort-container li.sortable-ghost {
+    background-color: #C8EBFB;
+}

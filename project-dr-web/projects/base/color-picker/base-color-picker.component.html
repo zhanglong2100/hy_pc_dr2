@@ -1,0 +1,17 @@
+<label>
+    <input
+        nz-input
+        type="text"
+        [placeholder]="'点击选择颜色'"
+        [style.width]="width"
+        [style.height]="height"
+        [style.background]="value"
+        [style.color]="textColor"
+        [(ngModel)]="value"
+        [(colorPicker)]="value"
+        [cpOutputFormat]="'hex'"
+        [cpPresetColors]="['#fff', '#000', '#2889e9', '#e920e9', '#fff500', 'rgb(236,64,64)']"
+    />
+</label>
+
+

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>sb-framework</artifactId>
+        <groupId>com.sbwork</groupId>
+        <version>2.9.3-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+
+
+	<groupId>com.sbwork</groupId>
+	<artifactId>project-dr-proxy</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>project-dr-proxy</name>
+
+	<description>Demo project for Spring Boot</description>
+
+    <properties>
+        <sb-framework.version>2.9.3-SNAPSHOT</sb-framework.version>
+        <sb-framework.sys.version>2.3.8</sb-framework.sys.version>
+
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+        <maven.test.skip>true</maven.test.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
+
+        <package.type>jar</package.type>
+
+        <swragger.version>2.7.0</swragger.version>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <skipTests>true</skipTests>
+
+        <argLine>-Dfile.encoding=UTF-8</argLine>
+
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+	<!--<properties>-->
+		<!--<java.version>17</java.version>-->
+	<!--</properties>-->
+
+    <profiles>
+        <!--开发环境-->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <!--生产环境-->
+        <profile>
+            <id>webjar</id>
+            <properties>
+                <spring.profiles.active>webjar</spring.profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>war</id>
+            <properties>
+                <package.type>war</package.type>
+                <spring.profiles.active>webjar</spring.profiles.active>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+
+	<dependencies>
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-core</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-core-mysql</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-core-h2</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-common-log-helper</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-common-scheduler</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-common-multiple-datasource-config</artifactId>
+            <!--            <artifactId>sbwork-common-config</artifactId>-->
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-cache-ehcache</artifactId>
+            <version>${sb-framework.version}</version>
+        </dependency>
+
+<!--        <dependency>
+            <groupId>com.supermap.iobjects</groupId>
+            <artifactId>com.supermap.data</artifactId>
+            <version>10.2.0</version>
+        </dependency>-->
+
+ <!--       <dependency>
+            <groupId>com.sbwork</groupId>
+            <artifactId>sbwork-transform</artifactId>
+            <version>1.3</version>
+        </dependency>-->
+
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/opensymphony/quartz-all -->
+<!--        <dependency>
+            <groupId>opensymphony</groupId>
+            <artifactId>quartz-all</artifactId>
+            <version>1.6.1</version>
+        </dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/org.quartz-scheduler/quartz -->
+<!--		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.0.1</version>
+		</dependency>-->
+		<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+<!--		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.2</version>
+		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.31</version>
+		</dependency>
+
+<!--		<dependency>
+			<groupId>edu.uci.ics</groupId>
+			<artifactId>crawler4j</artifactId>
+			<version>4.1</version>
+		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
+
+		<!-- hutool工具类， 主要用网络请求工具类 -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.7.14</version>
+		</dependency><dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+
+
+    </dependencies>
+
+
+
+<!--	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>timestamp-property</id>
+                        <goals>
+                            <goal>timestamp-property</goal>
+                        </goals>
+                        <configuration>
+                            <name>build.time</name>
+                            <pattern>yyyyMMdd_HH</pattern>
+                            <locale>zh_CN</locale>
+                            <timeZone>GMT+8</timeZone>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                    <classifier>exec</classifier>
+                    <!--suppress UnresolvedMavenProperty -->
+                    <finalName>
+                        ${project.artifactId}-${project.version}_${build.time}_${spring.profiles.active}
+                    </finalName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

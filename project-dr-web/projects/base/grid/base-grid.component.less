@@ -1,0 +1,156 @@
+@import '../../../src/variables';
+
+:host .abc {
+    height: 52px;
+    padding: 10px;
+    position: relative
+}
+
+:host .abc button {
+    background: @sb-color-1;
+    border-radius: 0;
+    border: none;
+}
+
+:host::ng-deep .list-ul {
+    width: 100%;
+    background: white;
+    list-style: none;
+    padding: 0;
+    min-height: 250px;
+    overflow-y: auto;
+    margin: 0;
+}
+
+:host ::ng-deep .list-ul > li {
+    display: inline-block;
+    border-radius: 0;
+    width: 110px;
+    height: 100px;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 15px;
+    margin: 12.5px 20px 20px;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #e6e6e6;
+}
+
+:host::ng-deep .list-ul > li > i {
+    width: 36px;
+    height: 32px;
+    background-image: url("../../../src/assets/dr/hover.svg");
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+:host::ng-deep .list-ul > li.active > i {
+    background-image: url("../../../src/assets/dr/select.svg");
+    display: inline-block;
+}
+
+:host::ng-deep .list-ul > li.active {
+    background: rgb(228, 244, 250);
+}
+
+:host::ng-deep .list-ul > li > span > i {
+    font-size: 32px;
+    margin-top: 15px;
+}
+
+:host::ng-deep .i-text {
+    margin: 5px 10px 0 10px;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+:host::ng-deep .i-button {
+    background-color: #edfcff;
+}
+
+:host::ng-deep .i-button span {
+    width: 1px;
+    border: 1px solid #cec8c8;
+}
+
+:host::ng-deep .i-button button {
+    margin: 0;
+    padding: 0;
+    width: 50px;
+    border: none;
+}
+
+:host::ng-deep .list-ul > li.disabled:hover {
+    background: rgb(228, 244, 250);
+    height: 113px;
+    margin-bottom: 7px;
+}
+
+:host::ng-deep .list-ul > li:hover i {
+    display: inline-block;
+}
+
+:host::ng-deep .tr-select {
+    background-color: @sb-color-1;
+}
+
+:host button.active {
+    background-color: #e1e1e1;
+}
+
+:host .inner-detail {
+    padding-top: 20px;
+}
+
+:host .table-list-change {
+    float: right;
+    height: 32px;
+    border: 1px solid rgba(217, 217, 217, 1);
+    border-radius: 2px;
+    padding: 0 4px;
+}
+
+:host .table-list-change a {
+    padding: 13px 3px 0;
+}
+
+:host::ng-deep .table-list-change a i svg.icon {
+    width: 30px;
+    height: 30px;
+}
+
+:host .table-list-change a.disabled {
+    color: #dbdada;
+}
+
+:host .detail-title {
+    border-bottom: 2px solid @sb-color-3;
+    color: @sb-color-5;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+:host .base-grid-container {
+    height: 100%;
+    overflow: hidden;
+}
+
+:host .cc {
+    padding: 0 10px;
+}
+
+:host ::ng-deep .scoll2 {
+    width: 100% !important;
+    height: calc(100% - 53px);
+    overflow: auto;
+}
+
+::ng-deep .tr-select {
+    background-color: @sb-color-2 !important;
+}

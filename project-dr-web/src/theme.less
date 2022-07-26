@@ -1,0 +1,86 @@
+// -------- 引入官方提供的 less 样式入口文件 -----------
+//@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+@import "../node_modules/@delon/theme/styles/index.less";
+//---------  引入yw全局变量 --------
+@import "variables.less";
+//@import "../node_modules/@delon/abc/index.less";
+// -------- 自定义参数覆盖 -----------
+@primary-color: @sb-primary-color;
+
+
+@btn-default-color: @primary-color;
+@btn-default-bg: #fff;
+@btn-default-border: @primary-color;
+
+.button-variant-other(@color; @background; @border) {
+    &:hover,
+    &:focus {
+        .button-color(@primary-8; @background; @primary-8);
+    }
+}
+
+.ant-form-item {
+    margin-bottom: 15px;
+}
+
+.outer-panel {
+    padding: 10px;
+    height: 100%;
+}
+
+.inner-panel {
+    border: 1px solid #e8e8e8;
+    height: 100%;
+    overflow: hidden auto;
+}
+
+@btn-default-bg: @sb-color-1;
+
+@border-radius-base: 0;
+@border-radius-sm: 0;
+//@btn-border-radius-base: 0;
+@btn-border-radius-sm: 0;
+@btn-border-width: 0;
+
+//@btn-border-style: @border-style-base;
+.iconfont-mixin() {
+    vertical-align: -0.2em; // for SVG icon, see https://blog.prototypr.io/align-svg-icons-to-text-and-say-goodbye-to-font-icons-d44b3d7b26b4
+}
+
+@font-size-base: 15px;
+
+.ant-menu-vertical .ant-menu-item, .ant-menu-vertical-left .ant-menu-item, .ant-menu-vertical-right .ant-menu-item, .ant-menu-inline .ant-menu-item, .ant-menu-vertical .ant-menu-submenu-title, .ant-menu-vertical-left .ant-menu-submenu-title, .ant-menu-vertical-right .ant-menu-submenu-title, .ant-menu-inline .ant-menu-submenu-title {
+    font-size: 16px;
+}
+
+:focus {
+    outline: 0;
+}
+
+.ant-input[disabled], .ant-input-number-disabled .ant-input-number-input, .ant-select-disabled .ant-select-selection {
+    background-color: #f5f5f5;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.word-wrap {
+    max-width: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ant-select-tree-dropdown {
+    max-height: 220px;
+}
+
+.viewer-button:focus, .viewer-button:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+}
+
+.viewer-button {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.ant-modal-close-x {
+    font-size: 15px;
+}

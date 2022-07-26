@@ -1,0 +1,11 @@
+{
+    "name": "in-memory-http-client",
+    "version": "0.0.0-sb-version",
+    "peerDependencies": {
+        "@angular/common": "^8.2.14",
+        "@angular/core": "^8.2.14"
+    },
+    "dependencies": {
+        "@sb/base": "0.0.0-sb-version"
+    }
+}

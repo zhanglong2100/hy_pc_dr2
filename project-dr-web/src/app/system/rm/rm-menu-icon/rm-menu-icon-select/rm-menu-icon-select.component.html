@@ -1,0 +1,39 @@
+<button
+    type="button"
+    class="preview"
+    [style.width]="width"
+    [style.height]="height"
+    (click)="clickMe()"
+    title="点击选择图标"
+>
+    <img *ngIf="selectedValue?.name != null" [ngStyle]="{'margin-top': '-5px'}" src='{{selectedValue.picture}}'
+         alt="样式图片" height="22px">
+</button>
+
+<base-popup
+    *ngIf="_showIconPanel"
+    [width]="'705px'"
+    (closeClick)="popupClose()" [title]="'图标选择'">
+    <!--自定义内容-->
+    <div class="content">
+        <nz-input-group nzSearch>
+            <label>
+                <input class="searchInput" type="text" nz-input placeholder="请输入图标名称" [(ngModel)]="searchForm.name"
+                       (ngModelChange)="reloadListData()"/>
+            </label>
+        </nz-input-group>
+        <ul class="list-ul" [style.height]="'300px'">
+            <ng-template ngFor let-item [ngForOf]="listData">
+                <li [class.active]="item.checked" (click)="checkItem($event,item)" title="{{item.name}}">
+                    <i nz-icon [class.active]="item.checked"></i>
+                    <img class="img" src="{{item.picture}}" alt="样式图片">
+                    <div class="i-text">{{item.name}}</div>
+                </li>
+            </ng-template>
+        </ul>
+    </div>
+    <div class="rightBtn">
+        <button type="button" nz-button (click)="submitDeal()" [nzType]="'primary'">确认</button>
+        <button type="button" nz-button (click)="popupClose()" [nzType]="'default'">取消</button>
+    </div>
+</base-popup>

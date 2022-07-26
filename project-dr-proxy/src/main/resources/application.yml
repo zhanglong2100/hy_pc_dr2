@@ -1,0 +1,98 @@
+config:
+  initial:
+    password: 12345678
+  noVerifyCode: false
+  fileSourceUploadPath: d:\\temp
+  swagger: false
+  druid:
+    login-password: admin
+    login-username: admin
+  db:
+    type: mysql
+    create-table: true
+    dbs:
+      #数据源a01
+      proxy:
+        db-type: mysql
+        url: jdbc:mysql://localhost:3306/hy_pc_dr?characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: test01
+        password: 123456
+  cache:
+    warning-record-size: 100
+    data-record-size: 3000
+  logback:
+    fileName: project-dr-proxy
+    outLevel: DEBUG
+    fileLevel: WARN
+spring:
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10240MB
+      # 设置总上传的数据大小
+      max-request-size: 10240MB
+      #开启
+      enabled: true
+  jackson:
+    time-zone: GMT+8
+  main:
+    banner-mode: "off"
+    allow-bean-definition-overriding: true
+  application:
+    name: proxy
+  datasource:
+    name: dr
+    url: jdbc:h2:file:./db/sjtb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 123
+    druid:
+      # 初始化连接大小
+      initial-size: 8
+      # 最小空闲连接数
+      min-idle: 5
+      #最大连接数
+      max-active: 64
+      #查询超时时间
+      query-timeout: 6000
+      #事务查询超时时间
+      transaction-query-timeout: 6000
+      #关闭空闲连接超时时间
+      remove-abandoned-timeout: 1800
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      ##配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      ##配置一个连接在池中最小生存的时间，单位是毫秒
+      min-victable-idle-time-millis: 300000
+      validation-query: select 1
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: true
+      pool-prepared-statements: true
+      max-open-prepared-statements: 300
+      verify-server-certificate: false
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 合并多个DruidDataSource的监控数据
+      use-global-dataSource-stat: true
+  profiles:
+    active: "@spring.profiles.active@"
+server:
+  port: 6084
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: utf-8
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: com.sbwork.**.entity
+logging:
+  level:
+    root: info
+    "com.sbwork": debug
+    "com.sbwork.cache.aspect.CacheAspectUtil": info
+    "com.sbwork.dr.deal.apsect.RecordCacheAspectUtil": info

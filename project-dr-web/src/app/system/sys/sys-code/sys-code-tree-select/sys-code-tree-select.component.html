@@ -1,0 +1,13 @@
+<nz-tree-select
+    #nzTree
+    style="width: 50%; max-width: 200px;"
+    [(ngModel)]="value"
+    [nzNodes]="codeValues"
+    nzShowSearch
+    nzAllowClear
+    [disabled]="disabled"
+    nzPlaceHolder="==请选择字典项=="
+    (nzExpandChange)="onExpandChange($event)"
+    [nzDropdownStyle]="nzDropdownStyle"
+    [nzShowIcon]="true">
+</nz-tree-select>

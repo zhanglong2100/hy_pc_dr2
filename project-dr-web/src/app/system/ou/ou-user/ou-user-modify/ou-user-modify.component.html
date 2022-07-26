@@ -1,0 +1,10 @@
+<base-detail
+    [schema]="schema"
+    [name]="'资料'"
+    [record]="record"
+    (eventClose)="close()"
+    [detailPanelType]="'modify'"
+    [customCommitMethod]="customCommitMethod.bind(this)"
+    [width]="800"
+>
+</base-detail>

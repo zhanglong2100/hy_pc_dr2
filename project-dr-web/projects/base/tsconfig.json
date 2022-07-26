@@ -1,0 +1,22 @@
+// Configuration for IDEs only.
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "..",
+        "baseUrl": "./",
+        "paths": {
+            "@sb/base/*": [
+                "./*"
+            ],
+            "@sb/*": [
+                "../*"
+            ]
+        }
+    },
+    "files": [
+        "public_api.ts"
+    ],
+    "include": [
+        "./**/*.ts"
+    ]
+}

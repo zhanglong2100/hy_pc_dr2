@@ -1,0 +1,20 @@
+<nz-tree-select
+    #nzTree
+    style="width: 50%; max-width: 200px;"
+    [(ngModel)]="value"
+    [nzNodes]="treeData"
+    nzShowSearch
+    nzAllowClear
+    nzDefaultExpandAll
+    [disabled]="disabled"
+    nzPlaceHolder="==请选择功能=="
+    (nzExpandChange)="onExpandChange($event)"
+    [nzDropdownStyle]="{'max-height': '300px'}"
+    [nzShowIcon]="true"
+>
+    <ng-template #nzTreeTemplate let-node>
+        <span class="ant-tree-node-content-wrapper" [class.ant-tree-node-selected]="node.isSelected">
+            <span><i nz-icon [nzType]="getIcon(node.origin)"></i> {{ node.title }} </span>
+        </span>
+    </ng-template>
+</nz-tree-select>

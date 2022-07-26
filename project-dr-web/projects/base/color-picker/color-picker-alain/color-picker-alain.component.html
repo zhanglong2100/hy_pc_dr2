@@ -1,0 +1,14 @@
+<sf-item-wrap [id]="id"
+              [schema]="schema"
+              [ui]="ui"
+              [showError]="showError"
+              [error]="error"
+              [showTitle]="schema.title">
+    <!-- 开始自定义控件区域 -->
+    <base-colorPicker
+        [width]="width"
+        [height]="height"
+        [(ngModel)]="selectedValue"
+        (ngModelChange)="setValue($event)"
+    ></base-colorPicker>
+</sf-item-wrap>
